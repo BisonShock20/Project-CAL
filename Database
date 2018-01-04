@@ -1,0 +1,6319 @@
+<Window x:Class="MyTTS.Window1"
+xmins="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmins:x="http://schemas.microsoft.com/winfx/2006/xaml"
+Title="My TTS" Height="300" Width="300">
+<DockPanel>
+    <StackPanel   Orientation="Vertical" Dockpanel.Dock="Bottom"
+        <Button x:Name="cmdSpeak" Content="Speak" Click= "cmdSpeak_Click"" />
+        <Button x:Name="cmdStop" Content="Stop" Click= "cmdStop_Click"/>
+        <Button x:Name="cmdSave" Content="Save Speech as wav" Click= "cmdSave_Click" />
+        public partial class Window1: Window
+        (
+            public Window1 ()
+            (
+                    InitializeComponent ();
+                    )
+                    private SpeechSynthesizer speech;
+                    
+                    protected override void OnInitalized (EventArgs e)
+                    (
+                        base.OnInitalized (e) ;
+
+                        speech = new SpeechSynthesizer () ;
+                        speech.SpeakProgress += new EventHandler<SpeakProgressEventArgs>(speech_ScrollBarVisibility= "Auto" TextWrapping= "WrapWithOverflow" LostFocus= "txtText_LostFocus" ></TextBox>
+                        }
+
+                        void speech_SpeakProgress (object sender, SpeakProgressEventArgs e)
+           {
+                    txtText.Select(e.CharacterPosition, e.CharacterCount);
+
+                    }
+
+                    private void cmdSpeak_Click (object sender, RoutedEventArgs e)
+                    (
+                            //Start speech without blocking the UI.
+                            speech.SpeakAsync (txtText.Text);
+
+                   private void cmdStop_Click (object sender, RoutedEventArgs e)  
+                   (
+                       // Stop the speech
+                        speech.SpeakAsyncCancelAll ();
+
+                 )
+
+                        private void txtText_LostFocus (object sender, RoutedEventArgs e)
+            (
+                e.Handled= true; //This will prevent selection from being hidden
+            )
+
+
+            private void cmdSave_Click(object sender, RoutedEventArgs e)
+            {
+                // Direct speech to a file.
+                speech.SetOutputToWaveFile ("Speech.wav") ;
+                try
+                {
+                        //Generate speech
+                        speech.Speak(txtText.Text) ;
+                    }
+                  
+
+
+                        Process.Start ("Speech.wav");
+                    {
+
+                        //Redirect speech back to audio output
+                        speech.SetOutputToNull () ;
+
+            )
+        )
+    )
+
+    </StackPanel>
+        <textbox x:name="txtText" AcceptaReturn="True" HorizontalScrollBarVisibility="Auto" TextWrapping= "WrapWithOverflow" ></Textbox>
+</dockpanel>
+</window>
+{
+"version": 1.0.0-*",
+"description": "Console Application",
+"authors: [ "" ],
+"tags": [ "" ],
+"projectUr1": "",
+"licenseUr1": "",
+"tooling": {
+    "defaultNamespace": "ConsoleApplication"    
+    },
+    "dependencies": {
+    },
+    "commands": {
+    "ems_dataparser": "ems_dataparser"
+    },
+    "frameworks": {
+        "dnx451": {
+        "dependencies": {
+        "sqlite-net-pc1": "1.0.11" //add .NET 4.5.1 compatible packages here
+       }
+    },
+    "dnxcore50": {
+        "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "system.Collections": "4.0.11-beta-2351",
+        "system.Console": "4.0.0-beta-23516",
+        "system.Linq": "4.0.1-beta-23516",
+        "system.Threading": "4.0.11-beta-23516",
+        "sqlite-net-pc1": "1.0.11" //add ASP Core compatible packages here
+           }
+        }
+     }
+}    
+> npm init --yes
+Wrote to home//ag_dubs/my_package/package.json:
+
+{
+    "name": "my_package",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {test}
+            "test": "echo\"Error: no test specified\" & exit 1"
+            },
+            "keywords": [],
+            "author:" "ag_dubs",
+            "license": "ISC"
+            "repository": {
+                "type": "git",
+                "url": {
+        },
+                "bugs": {
+                    "url": {
+        },
+        "homepage": {
+        }
+
+{
+    "name": "my_package",
+    "version": "1.0.0",
+    "dependencies": {
+        "my_dep": "^1.0.0"
+        },
+        "devDependencies": {
+                "my_test_framework": "^3.1.0"
+                }
+            }
+            npm install <package_name> --save
+            npm install ,package_name> --save-dev 
+            
+
+{ "license": "UNLICENSED" >< "private: true" }
+"authors" : "Kyra Taub" <email> (url), 
+"contributors" : "Adam Ransaka" <email> (url), "Zeyd M. Ben Halim," <email> (url); "Eric S. Raymond" <email> (url)
+
+>"version" : 1.0.00-beta-1.0.00
+{ "engine-strict" } }
+"process.platform"
+"os" : [ "linux", "!win32", "!win64", "!winfx" ]
+"os" : [ OS X "Cheetah" ],
+"os" : [ OS X "Puma" ],
+"os" : [ OS X "Jaguar" ],
+"os" : [ OS X "Panther" ],
+"os" : [ OS X "Tiger" ],
+"os" : [ OS X "Leopard" ],
+"os" : [ OS X "Snow Leopard" ],
+"os" : [ OS X "Lion" ],
+"os" : [ OS X "Mountain Lion" ],
+"os" : [ OS X "Mavericks" ],
+"os" : [ OS X "Yosemite" ],
+"os" : [ OS X "El Capitan" ],
+"os" : [ macOS "Sierra" ],
+"cpu" : [ "x64" ]
+    }
+}
+"scripts" : {"start": "node server.js}
+"scripts" : {preinstall: "node-gyp rebuild"}
+Restore (dnu restore)
+Install (dnu install <package id>)
+Pack (dnu pack)
+Build (dnu build)
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WordPredictionLibrary
+{
+	public static class FileInfoExtensionMethods
+	{
+		public static FileInfo RenameIfExists(this FileInfo source)
+		{
+			if (source != null)
+			{
+				int counter = 1;
+				string newFilename = source.FullName;
+
+				while (File.Exists(newFilename))
+				{
+					newFilename = Path.Combine(source.DirectoryName,string.Format("{0} ({1}){2}", Path.GetFileNameWithoutExtension(source.Name), counter++, Path.GetExtension(source.Name)));
+				}
+				return new FileInfo(newFilename);
+			}
+			return default(FileInfo);
+		}
+	}
+
+	public static class StringExtensionMethods
+	{
+		public static string TryToLower(this string source)
+		{
+			if (string.IsNullOrWhiteSpace(source))
+			{
+				return "";
+			}
+			else
+			{				
+				return source.ToLowerInvariant();
+			}
+		}
+	}
+}
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace WordPredictionLibrary
+{
+	public class NextWordFrequencyDictionary
+	{
+		internal Dictionary<Word, int> _internalDictionary = null;
+		public int UniqueWordCount { get { return _internalDictionary.Count; } }
+		public int TotalWordsSeen { get { return _internalDictionary.Values.Sum(); } }
+				
+		public NextWordFrequencyDictionary()
+		{
+			_internalDictionary = new Dictionary<Word, int>();
+		}
+
+		public NextWordFrequencyDictionary(Dictionary<Word, int> dictionary)
+			: this()
+		{
+			_internalDictionary = dictionary;
+		}
+
+		public void Add(Word word)
+		{
+			if (this.Contains(word))
+			{
+				_internalDictionary[word] += 1;
+			}
+			else
+			{
+				_internalDictionary.Add(word, 1);
+			}
+		}
+
+		public int this[Word key]
+		{
+			get { return this.Contains(key) ? _internalDictionary[key] : 0; }
+		}
+
+		public bool Contains(Word key)
+		{
+			return _internalDictionary.ContainsKey(key);
+		}
+
+		public bool Contains(string key)
+		{
+			string lowerKey = key.TryToLower();
+			return _internalDictionary.Any(kvp => kvp.Key.Equals(lowerKey));
+		}
+
+		public string GetNextWord()
+		{			
+			return GetNextWordByFrequencyDescending().FirstOrDefault();
+		}
+
+		public IEnumerable<string> TakeTop(int count)
+		{
+			return GetNextWordByFrequencyDescending().Take(count);
+		}
+
+		public IEnumerable<string> GetNextWordByFrequencyDescending()
+		{
+			return OrderByFrequencyDescending().Select(kvp => kvp.Key.Value);
+		}
+
+		private IOrderedEnumerable<KeyValuePair<Word, int>> _orderedDictionary = null;
+		public IOrderedEnumerable<KeyValuePair<Word, int>> OrderByFrequencyDescending()
+		{
+			
+				_orderedDictionary = _internalDictionary.OrderByDescending(kvp => kvp.Value);
+			}
+			return _orderedDictionary;
+		}		
+
+		internal void OrderInternalDictionary()
+		{
+			_internalDictionary = OrderByFrequencyDescending().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+		}
+
+		public override string ToString()
+		{
+			return string.Join(
+				Environment.NewLine,
+				this.OrderByFrequencyDescending().Select(kvp => string.Format("{0}:{1}", kvp.Value, kvp.Key.Value))
+			);
+		}
+	}
+}
+using System;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using System.Xml.XPath;
+using System.Collections.Generic;
+
+namespace WordPredictionLibrary
+{
+	public class TrainedDataSet
+	{
+		public long TotalWordsProcessed { get { return _wordDictionary.TotalWordsProcessed; } }
+		public int UniqueWordsCataloged { get { return _wordDictionary.UniqueWordCount; } }
+
+		internal WordDictionary _wordDictionary;
+
+		private static string AllowedChars = " .abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		public TrainedDataSet()
+		{
+			_wordDictionary = new WordDictionary();
+		}
+
+		public TrainedDataSet(WordDictionary dictionary)
+		{
+			_wordDictionary = dictionary;
+		}
+
+		public string SuggestNext(string currentWord)
+		{
+			return _wordDictionary.SuggestNextWord(currentWord);
+		}
+
+		public void Train(FileInfo paragraphFile)
+		{
+			List<List<string>> paragraphs = TokenizeTextFile(paragraphFile.FullName);
+			_wordDictionary.Train(paragraphs);
+		}
+
+		internal static List<List<string>> TokenizeTextFile(string filename)
+		{
+			if (!File.Exists(filename)) { throw new FileNotFoundException("Cannot parse file that does not exist", filename); }
+
+			string rawFileText = File.ReadAllText(filename);
+			// Do replacement of characters here
+			string massagedFileText = rawFileText.Replace('!', '.');
+			massagedFileText = rawFileText.Replace('?', '.');
+
+			string sanitizedFileText = new string(rawFileText.Where(c => AllowedChars.Contains(c)).ToArray());
+			//List<string> fileLines = sanitizedFileText.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+			//List<List<string>> fileParagraph = fileLines.Select(p => p.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList()).ToList();
+
+			List<string> fileSentences = sanitizedFileText.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+
+			int totalWordCount = 0;
+			List<List<string>> sentences = new List<List<string>>();
+			foreach (string sentence in fileSentences)
+			{
+				List<string> words = sentence.Split(' ').ToList();
+				totalWordCount += words.Count;
+				sentences.Add(words);
+			}
+
+#if DEBUG
+			string debugParsedFileFilename = string.Format("Debug.{0}.Parsed.{1}.txt", Path.GetFileNameWithoutExtension(filename), totalWordCount);
+			FileInfo parseFile = new FileInfo(debugParsedFileFilename).RenameIfExists();
+
+			int counter = 1;
+			File.AppendAllText(
+				parseFile.FullName,
+				string.Join(
+					Environment.NewLine,
+					sentences.Select(l =>
+						string.Format("Sentence{0} = \"{1}\".", counter++, string.Join(" ", l))
+					)
+				)
+			);
+#endif
+			return sentences;
+		}
+
+		#region Xml Serialization
+
+		private static class XmlElementNames
+		{
+			public static string KeyNode = "Key";
+			public static string WordNode = "Word";
+			public static string ValueNode = "Value";
+			public static string RootNode = "TrainedDataSet";
+			public static string KeyValuePairNode = "KeyValuePair";
+			public static string DictionarySizeNode = "DictionarySize";
+			public static string DictionaryNode = "NextwordDictionary";
+			public static string TotalWordsProcessedNode = "TotalWordsProcessed";
+		}
+
+		public static TrainedDataSet DeserializeFromXml(string filename)
+		{
+			if (!File.Exists(filename)) { return new TrainedDataSet(); }
+
+			XDocument doc = XDocument.Parse(File.ReadAllText(filename), LoadOptions.None);
+			if (doc == null) { return new TrainedDataSet(); }
+
+			XElement rootNode = doc.XPathSelectElement(XmlElementNames.RootNode);
+			if (rootNode == null) { return new TrainedDataSet(); }
+
+			XElement totalWordsNode = rootNode.XPathSelectElement(XmlElementNames.TotalWordsProcessedNode);
+			if (totalWordsNode == null) { return new TrainedDataSet(); }
+			int totalWordsProcessed = 0; int.TryParse(totalWordsNode.Value, out totalWordsProcessed);
+
+			List<XElement> wordNodes = rootNode.XPathSelectElements(XmlElementNames.WordNode).ToList();
+			if (wordNodes == null || wordNodes.Count < 1) { return new TrainedDataSet(); }
+
+			// Dictionary
+			Dictionary<string, Word> dictionary = new Dictionary<string, Word>();
+
+			// Create a Word object for each Word before populating NextWordFrequencyDictionary
+			foreach (XElement wordNode in wordNodes)
+			{
+				XElement textNode = wordNode.XPathSelectElement(XmlElementNames.ValueNode);
+				XElement countNode = wordNode.XPathSelectElement(XmlElementNames.DictionarySizeNode);
+
+				if (textNode == null || countNode == null)
+				{
+					continue;
+				}
+
+				string text = textNode.Value;
+				int ttlWordCount = 0; int.TryParse(countNode.Value, out ttlWordCount);
+
+				Word newWord = new Word(text);
+				//newWord.TotalWordsSeen = ttlWordCount;
+
+				dictionary.Add(text, newWord);
+			}
+
+			// Now populate NextWordFrequencyDictionary
+			foreach (XElement wordNode in wordNodes)
+			{
+				XElement textNode = wordNode.XPathSelectElement(XmlElementNames.ValueNode);
+				XElement dictNode = wordNode.XPathSelectElement(XmlElementNames.DictionaryNode);
+
+				if (textNode == null || dictNode == null)
+				{
+					continue;
+				}
+
+				string text = textNode.Value;
+
+				if (!dictionary.Keys.Contains(text))
+				{
+					continue;
+				}
+
+				Word word = dictionary[text];
+
+				List<XElement> kvpNodes = dictNode.XPathSelectElements(XmlElementNames.KeyValuePairNode).ToList();
+				foreach (XElement kvpNode in kvpNodes)
+				{
+					XElement keyNode = kvpNode.XPathSelectElement(XmlElementNames.KeyNode);
+					XElement valueNode = kvpNode.XPathSelectElement(XmlElementNames.ValueNode);
+
+					string keyText = keyNode.Value;
+					int valueInt = 0; int.TryParse(valueNode.Value, out valueInt);
+
+					if (!dictionary.Keys.Contains(keyText))
+					{
+						continue;
+					}
+
+					Word keyWord = dictionary[keyText];
+					word._nextWordDictionary._internalDictionary.Add(keyWord, valueInt);
+				}
+			}
+
+			if (dictionary != null)
+			{
+				TrainedDataSet result = new TrainedDataSet(new WordDictionary(dictionary));
+				return result;
+			}
+			else
+			{
+				return new TrainedDataSet();
+			}
+		}
+
+		public static bool SerializeToXml(TrainedDataSet dataset, string filename)
+		{
+			if (dataset == null || dataset._wordDictionary == null || dataset._wordDictionary.UniqueWordCount < 1)
+			{
+				return false;
+			}
+
+			// Sort every Word's internal dictionary
+			foreach (Word word in dataset._wordDictionary.Words)
+			{
+				word.OrderInternalDictionary();
+			}
+
+			// Sort the NextWordDictionary
+			dataset._wordDictionary =
+				new WordDictionary(
+					dataset._wordDictionary._internalDictionary.OrderByDescending(kvp => kvp.Value.TotalWordsSeen).ToDictionary(kvp => kvp.Key, kvp => kvp.Value)
+				);
+
+			XDocument doc = new XDocument(
+				new XElement(XmlElementNames.RootNode,
+					new XElement(XmlElementNames.TotalWordsProcessedNode, dataset._wordDictionary.TotalWordsProcessed),
+					dataset._wordDictionary.Words.Select(word =>
+						new XElement(XmlElementNames.WordNode,
+							new XElement(XmlElementNames.ValueNode, word.Value),
+							new XElement(XmlElementNames.DictionarySizeNode, word.TotalWordsSeen),
+							new XElement(XmlElementNames.DictionaryNode,
+								word._nextWordDictionary._internalDictionary.Select(kvp =>
+									new XElement(XmlElementNames.KeyValuePairNode,
+										new XElement(XmlElementNames.KeyNode, kvp.Key.Value),
+										new XElement(XmlElementNames.ValueNode, kvp.Value)
+									)
+								)
+							)
+						)
+					)
+				)
+			);
+
+			if (doc != null)
+			{
+				doc.Save(filename, SaveOptions.None);
+				return File.Exists(filename);
+			}
+
+			return false;
+		}
+
+		#endregion
+
+	}
+}
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+
+namespace WordPredictionLibrary
+{
+    public class Word : IEquatable<string>
+	{
+		public string Value { get; internal set; }
+		public int TotalWordsSeen { get { return _nextWordDictionary.TotalWordsSeen; } }
+		public int UniqueWordsSeen { get { return _nextWordDictionary.UniqueWordCount; } }
+		
+		internal NextWordFrequencyDictionary _nextWordDictionary;
+	
+		public Word()
+		{	
+			_nextWordDictionary = new NextWordFrequencyDictionary();			
+		}
+
+		public Word(string value)
+			: this()
+		{
+			Value = value.TryToLower();
+		}
+
+		public void AddNextWord(Word word)
+		{
+			_nextWordDictionary.Add(word);
+		}
+
+		public string SuggestNextWord()
+		{
+			return _nextWordDictionary.GetNextWord();
+		}
+
+		public IEnumerable<string> SuggestNextWords(int count)
+		{
+			return _nextWordDictionary.TakeTop(count);
+		}
+
+		internal void OrderInternalDictionary()
+		{
+			_nextWordDictionary.OrderInternalDictionary();
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+			else if (ReferenceEquals(this, obj))
+			{
+				return true;
+			}
+			else if (obj is string)
+			{
+				string str = (string)obj;
+				return this.Value.Equals(str, StringComparison.InvariantCultureIgnoreCase);
+			}
+			else if (obj is Word)
+			{
+				Word wrd = (Word)obj;
+				return this.Value.Equals(wrd.Value,StringComparison.InvariantCultureIgnoreCase);
+			}
+			else
+			{
+				return base.Equals(obj);
+			}
+		}
+
+		public bool Equals(Word wrd)
+		{
+			return this.Value.Equals(wrd.Value, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+		public bool Equals(string str)
+		{
+			return this.Value.Equals(str, StringComparison.InvariantCultureIgnoreCase);
+		}
+
+		public override int GetHashCode()
+		{
+			return Value.GetHashCode();
+		}
+
+		public override string ToString()
+		{
+			return string.Format("[Word = ", this.Value) +
+				"[" +
+				Environment.NewLine + "\t" +
+				string.Join(Environment.NewLine + "\t",
+					_nextWordDictionary.OrderByFrequencyDescending().Select
+						(kvp => string.Format("{0}:{1}", kvp.Value, kvp.Key.Value))
+				) + Environment.NewLine +
+				"]" + Environment.NewLine;
+		}
+
+		public double GetNextWordProbability(Word nextWord)
+		{
+			if (!_nextWordDictionary.Contains(nextWord))
+			{
+				return 0d;
+			}
+			double count = _nextWordDictionary[nextWord];
+			double totalSeen = TotalWordsSeen;
+
+			return count / totalSeen;
+		}
+
+		//public OrderedDictionary GetNextWordProbabilityDictionary()
+		//{
+		//	OrderedDictionary orderedDict = new OrderedDictionary();
+		//	foreach (KeyValuePair<Word, int> kvp in nextWordFrequencyDictionary.OrderByFrequencyDescending())
+		//		orderedDict.Add(kvp.Key, kvp.Value / TotalWordCount);
+		//	return orderedDict;
+		//}
+	}
+}
+using System;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
+
+namespace WordPredictionLibrary
+{
+	public class WordDictionary
+	{
+		public static string EndPlaceholder = "{{end}}";
+		public long TotalWordsProcessed { get { return this.Words.Select(w => (long)w.TotalWordsSeen).Sum(); } }
+		public int UniqueWordCount { get { return _internalDictionary == null ? 0 : _internalDictionary.Count; } }
+		internal List<Word> Words { get { return _internalDictionary.Values.ToList(); } }
+
+		internal Dictionary<string, Word> _internalDictionary = null;
+
+		public WordDictionary()
+		{
+			_internalDictionary = new Dictionary<string, Word>();
+		}
+
+		public WordDictionary(Dictionary<string, Word> dictionary)
+		{
+			_internalDictionary = dictionary;
+		}
+			
+
+		public override string ToString()
+		{
+			StringBuilder result = new StringBuilder();
+
+			foreach (Word word in _internalDictionary.OrderByDescending(kvp => kvp.Value.TotalWordsSeen).Select(kvp => kvp.Value))
+			{
+				result.AppendFormat("[Word \"{0}\": LinkedWords/Total = {1}/{2}, {3}{4}]", word.Value, word.TotalWordsSeen, this.UniqueWordCount, word.ToString(), Environment.NewLine);
+			}
+			return result.ToString();
+		}
+
+		#region Suggest
+
+		public string SuggestNextWord(string fromWord)
+		{
+			fromWord = fromWord.TryToLower();
+			if (_internalDictionary.ContainsKey(fromWord))
+			{
+				return _internalDictionary[fromWord].SuggestNextWord();
+			}
+			return string.Empty;
+		}
+
+		public IEnumerable<string> Suggest(string fromWord, int quantity)
+		{
+			fromWord = fromWord.TryToLower();
+			if (_internalDictionary.ContainsKey(fromWord))
+			{
+				return _internalDictionary[fromWord].SuggestNextWords(quantity);
+			}
+			return new List<string>() { };
+		}
+
+		public double GetWordPopularity(string word)
+		{
+			if (!_internalDictionary.ContainsKey(word))
+			{
+				return 0;
+			}
+
+			Word thisWord = _internalDictionary[word];
+			int wordReferenceCount = thisWord.TotalWordsSeen;
+			long totalReferenceCount = this.Words
+											.Select(w => (long)w.TotalWordsSeen)
+											.Sum();
+
+			long averageReferenceCount = totalReferenceCount / this.UniqueWordCount;
+
+			double average = (double)averageReferenceCount;
+			double refCount = (wordReferenceCount);
+
+			//long lResult = wordReferenceCount / averageReferenceCount;
+			double dResult = refCount / average;
+			
+			return dResult;
+		}
+		
+		public double GetNextWordProbability(string current, string next)
+		{
+			if (!_internalDictionary.ContainsKey(current) || !_internalDictionary.ContainsKey(next))
+			{
+				return 0d;
+			}
+			return _internalDictionary[current].GetNextWordProbability(_internalDictionary[next]);
+		}
+
+		#endregion
+
+		#region Train
+
+		public void Train(List<List<string>> paragraph)
+		{
+			foreach (List<string> sentence in paragraph)
+			{
+				this.Train(sentence);
+			}
+
+			int i = 0;
+		}
+
+		public void Train(List<string> sentence)
+		{
+			if (sentence == null || sentence.Count < 1) { return; }
+			sentence = sentence.Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
+
+			string lastWord = string.Empty;
+			foreach (string word in sentence)
+			{
+				if (string.IsNullOrWhiteSpace(word))
+				{
+					continue;
+				}
+				if (!string.IsNullOrEmpty(lastWord))
+				{
+					Add(lastWord, word);
+				}
+				lastWord = word;
+			}
+			Add(lastWord, EndPlaceholder);
+		}
+
+		internal void Add(string current, string next)
+		{
+			if (string.IsNullOrWhiteSpace(current))
+			{
+				return;
+			}
+			string currentLower = current.TryToLower();
+			string nextLower = next.TryToLower();
+
+			CreateIfRequired(currentLower);
+			CreateIfRequired(nextLower);
+			Word currentWord = _internalDictionary[currentLower];
+			currentWord.AddNextWord(_internalDictionary[nextLower]);
+		}
+
+		private void CreateIfRequired(string word)
+		{
+			string lowerWord = word.TryToLower();
+			if (lowerWord == "")
+			{
+				lowerWord = EndPlaceholder;
+			}
+			if (!_internalDictionary.ContainsKey(lowerWord))
+			{
+				_internalDictionary.Add(lowerWord, new Word(lowerWord));
+			}
+		}
+
+		#endregion
+
+	}
+}
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5F5B6D7-462A-4DC3-86AD-E70BBBEBE029}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WordPredictionLibrary</RootNamespace>
+    <AssemblyName>WordPredictionLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="NextWordFrequencyDictionary.cs" />
+    <Compile Include="TrainedDataSet.cs" />
+    <Compile Include="Word.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordDictionary.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
+#ifndef CURSES_PRIV_H
+#define CURSES_PRIV_H 1
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <ncurses_cfg.h>
+
+#if USE_RCS_IDS
+#define MODULE_ID(id) static const char Ident[] = id;
+#else
+#define MODULE_ID(id) //
+#endif
+
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+
+#if HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+#if HAVE_SYS_BSDTYPES_H
+#include <sys/bsdtypes.h>	
+#endif
+
+#if HAVE_LIMITS_H
+# include <limits.h>
+#elif HAVE_SYS_PARAM_H
+# include <sys/param.h>
+#endif
+
+#ifndef PATH_MAX
+# if defined(_POSIX_PATH_MAX)
+#  define PATH_MAX _POSIX_PATH_MAX
+# elif defined(MAXPATHLEN)
+#  define PATH_MAX MAXPATHLEN
+# else
+#  define PATH_MAX 255	
+# endif
+#endif
+
+#include <assert.h>
+#include <stdio.h>
+
+#include <errno.h>
+
+#if DECL_ERRNO
+extern int errno;
+#endif
+
+#include <nc_panel.h>
+
+#if HAVE_POLL && HAVE_SYS_STROPTS_H && HAVE_POLL_H
+#define USE_FUNC_POLL 1
+#else
+#define USE_FUNC_POLL 0
+#endif
+
+
+#if HAVE_LIBGPM && HAVE_GPM_H
+#define USE_GPM_SUPPORT 1
+#else
+#define USE_GPM_SUPPORT 0
+#endif
+
+
+
+#define DEFAULT_MAXCLICK 166
+#define EV_MAX	
+#ifndef NCURSES_EXT_FUNCS
+#undef HAVE_SIZECHANGE
+#endif
+
+#if HAVE_SIZECHANGE
+#define USE_SIZECHANGE 1
+#else
+#undef USE_SIGWINCH
+#endif
+#if !USE_SCROLL_HINTS
+#if USE_HASHMAP
+#define USE_SCROLL_HINTS 1
+#else
+#define USE_SCROLL_HINTS 0
+#endif
+#endif
+#if USE_SCROLL_HINTS
+#define if_USE_SCROLL_HINTS(stmt) stmt
+#else
+#define if_USE_SCROLL_HINTS(stmt) /*nothing*/
+#endif
+struct tries {
+	struct tries    *child;     /* ptr to child.  NULL if none          */
+	struct tries    *sibling;   /* ptr to sibling.  NULL if none        */
+	unsigned char    ch;        /* character at this node               */
+	unsigned short   value;     /* code of string so far.  0 if none.   */
+};
+#define MAXCOLUMNS    135
+#define MAXLINES      66
+#define FIFO_SIZE     MAXCOLUMNS+2  /* for nocbreak mode input */
+
+#define ACS_LEN       128
+
+#define WINDOWLIST struct _win_list
+
+#include <curses.h>	
+typedef struct
+{
+	char *text;             /* text for the label */
+	char *form_text;        /* formatted text (left/center/...) */
+	int x;                  /* x coordinate of this field */
+	char dirty;             /* this label has changed */
+	char visible;           /* field is visible */
+} slk_ent;
+
+typedef struct {
+	char dirty;             /* all labels have changed */
+	char hidden;            /* soft labels are hidden */
+	struct _win_st *win;
+	slk_ent *ent;
+	char*  buffer;           /* buffer for labels */
+	short  maxlab;           /* number of available labels */
+	short  labcnt;           /* number of allocated labels */
+	short  maxlen;           /* length of labels */
+        chtype attr;             /* soft label attribute */
+} SLK;
+
+struct screen {
+	int             _ifd;           /* input file ptr for screen        */
+	FILE            *_ofp;          /* output file ptr for screen       */
+	char            *_setbuf;       /* buffered I/O for output          */
+	int             _checkfd;       /* filedesc for typeahead check     */
+	struct term     *_term;         /* terminal type information        */
+	short           _lines;         /* screen lines                     */
+	short           _columns;       /* screen columns                   */
+	short           _lines_avail;   /* lines available for stdscr       */
+	short           _topstolen;     /* lines stolen from top            */
+
+	WINDOW          *_curscr;       /* current screen                   */
+	WINDOW          *_newscr;       /* virtual screen to be updated to  */
+	WINDOW          *_stdscr;       /* screen's full-window context     */
+
+	struct tries    *_keytry;       /* "Try" for use with keypad mode   */
+	struct tries    *_key_ok;       /* Disabled keys via keyok(,FALSE)  */
+	int             _tried;         /* keypad mode was initialized      */
+
+	unsigned int    _fifo[FIFO_SIZE];       /* input push-back buffer   */
+	short           _fifohead,      /* head of fifo queue               */
+	int             _cursor;        /* visibility of the cursor         */
+	int             _cursrow;       /* physical cursor row              */
+	int             _curscol;       /* physical cursor column           */
+	int             _nl;            /* True if NL -> CR/NL is on        */
+	int             _raw;           /* True if in raw mode              */
+	int             _cbreak;        /* 1 if in cbreak mode              */
+	                                /* > 1 if in halfdelay mode         */
+	int             _echo;          /* True if echo on                  */
+	SLK             *_slk;          /* ptr to soft key struct / NULL    */
+#if USE_HARD_TABS
+	int             _ht_cost;       /* cost of (tab)                    */
+	int             _cbt_cost;      /* cost of (backtab)                */
+#endif /* USE_HARD_TABS */
+	int             _cub1_cost;     /* cost of (cursor_left)            */
+	int             _cuf1_cost;     /* cost of (cursor_right)           */
+	int             _cud1_cost;     /* cost of (cursor_down)            */
+	int             _cuu1_cost;     /* cost of (cursor_up)              */
+	int             _cub_cost;      /* cost of (parm_cursor_left)       */
+	int             _cuf_cost;      /* cost of (parm_cursor_right)      */
+	int             _cud_cost;      /* cost of (parm_cursor_down)       */
+	int             _cuu_cost;      /* cost of (parm_cursor_up)         */
+	int             _hpa_cost;      /* cost of (column_address)         */
+	int             _vpa_cost;      /* cost of (row_address)            */
+	/* used in lib_doupdate.c, must be chars */
+	int             _ed_cost;       /* cost of (clr_eos)                */
+	int             _el_cost;       /* cost of (clr_eol)                */
+	int             _el1_cost;      /* cost of (clr_bol)                */
+	int             _dch1_cost;     /* cost of (delete_character)       */
+	int             _ich1_cost;     /* cost of (insert_character)       */
+	int             _dch_cost;      /* cost of (parm_dch)               */
+	int             _ich_cost;      /* cost of (parm_ich)               */
+	int             _ech_cost;      /* cost of (erase_chars)            */
+	int             _rep_cost;      /* cost of (repeat_char)            */
+	int             _hpa_ch_cost;   /* cost of (column_address)         */
+	int             _cup_ch_cost;   /* cost of (cursor_address)         */
+	/* used in lib_mvcur.c */
+	char *          _address_cursor;
+	int             _carriage_return_length;
+	int             _cursor_home_length;
+	int             _cursor_to_ll_length;
+	int             _scrolling;    
+
+}
+
+using System;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
+using ACAT.Lib.Core.Audit;
+using ACAT.Lib.Core.PanelManagement;
+using ACAT.Lib.Core.UserManagement;
+using ACAT.Lib.Core.Utility;
+using ACAT.Lib.Extension;
+
+#region SupressStyleCopWarnings
+
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1126:PrefixCallsCorrectly",
+        Scope = "namespace",
+        Justification = "Not needed. ACAT naming conventions takes care of this")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1101:PrefixLocalCallsWithThis",
+        Scope = "namespace",
+        Justification = "Not needed. ACAT naming conventions takes care of this")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1121:UseBuiltInTypeAlias",
+        Scope = "namespace",
+        Justification = "Since they are just aliases, it doesn't really matter")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.DocumentationRules",
+        "SA1200:UsingDirectivesMustBePlacedWithinNamespace",
+        Scope = "namespace",
+        Justification = "ACAT guidelines")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.NamingRules",
+        "SA1309:FieldNamesMustNotBeginWithUnderscore",
+        Scope = "namespace",
+        Justification = "ACAT guidelines. Private fields begin with an underscore")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.NamingRules",
+        "SA1300:ElementMustBeginWithUpperCaseLetter",
+        Scope = "namespace",
+        Justification = "ACAT guidelines. Private/Protected methods begin with lowercase")]
+
+#endregion SupressStyleCopWarnings
+
+
+
+
+
+
+namespace ACAT.Applications.ACATApp
+{
+    /// <summary>
+    /// Initializes the various modules in ACAT and activates the default scanner.
+    /// </summary>
+    internal static class Program
+    {
+        /// <summary>
+        /// Preferred panel config to sue
+        /// </summary>
+        private static String _panelConfig;
+
+        /// <summary>
+        /// Active profile name
+        /// </summary>
+        private static string _profile;
+
+        /// <summary>
+        /// Active user name
+        /// </summary>
+        private static String _userName;
+
+        /// <summary>
+        /// Used for parsing the command line
+        /// </summary>
+        private enum ParseState
+        {
+            Next,
+            Username,
+            Profile,
+            PanelConfig
+        }
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        public static void Main(String[] args)
+        {
+            // Disallow multiple instances
+            if (FileUtils.IsACATRunning())
+            {
+                return;
+            }
+
+            Windows.TurnOffDPIAwareness();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            // get appname and copyright information
+            object[] attributes = assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            var appName = (attributes.Length != 0)
+                ? ((AssemblyTitleAttribute)attributes[0]).Title
+                : String.Empty;
+
+            var appVersion = "Version " + assembly.GetName().Version;
+            attributes = assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+            var appCopyright = (attributes.Length != 0)
+                ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright
+                : String.Empty;
+
+            Log.Info("***** " + appName + ". " + appVersion + ". " + appCopyright + " *****");
+
+            parseCommandLine(args);
+
+            CoreGlobals.AppGlobalPreferences =
+                GlobalPreferences.Load(FileUtils.GetPreferencesFileFullPath(GlobalPreferences.FileName));
+
+            //Set the active user/profile information
+            setUserName();
+            setProfileName();
+
+            //Create user and profile if they don't already exist
+            if (!createUserAndProfile())
+            {
+                return;
+            }
+
+            if (!loadUserPreferences())
+            {
+                return;
+            }
+
+            Log.SetupListeners();
+
+            if (!String.IsNullOrEmpty(_panelConfig))
+            {
+                Common.AppPreferences.PreferredPanelConfigNames = _panelConfig + ";" +
+                                                                  Common.AppPreferences.PreferredPanelConfigNames;
+            }
+
+            Splash splash = new Splash(FileUtils.GetImagePath("SplashScreenImage.png"), appName, appVersion, appCopyright, 1000);
+            splash.Show();
+
+            Context.PreInit();
+            Common.PreInit();
+
+            if (!Context.Init())
+            {
+                splash.Close();
+                splash = null;
+
+                TimedMessageBox.Show(Context.GetInitCompletionStatus());
+                if (Context.IsInitFatal())
+                {
+                    return;
+                }
+            }
+
+            AuditLog.Audit(new AuditEvent("Application", "start"));
+
+            Context.ShowTalkWindowOnStartup = Common.AppPreferences.ShowTalkWindowOnStartup;
+            Context.AppAgentMgr.EnableContextualMenusForDialogs = Common.AppPreferences.EnableContextualMenusForDialogs;
+            Context.AppAgentMgr.EnableContextualMenusForMenus = Common.AppPreferences.EnableContextualMenusForMenus;
+
+            if (splash != null)
+            {
+                splash.Close();
+            }
+
+            if (!Context.PostInit())
+            {
+                MessageBox.Show(Context.GetInitCompletionStatus(), "Initialization Error");
+                return;
+            }
+
+            Common.Init();
+
+            try
+            {
+                Application.Run();
+
+                AuditLog.Audit(new AuditEvent("Application", "stop"));
+
+                Context.Dispose();
+
+                Common.Uninit();
+
+                //Utils.Dispose();
+
+                Log.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Creates the specified user using the batchFileName.
+        /// Executes the batchfile which creates the user
+        /// folder and copies the initialization files
+        /// </summary>
+        /// <param name="batchFileName">Name of the batchfile to run</param>
+        /// <param name="userName">Name of the user</param>
+        /// <returns>true on success</returns>
+        private static bool createUser(String batchFileName, String userName)
+        {
+            bool retVal = true;
+            try
+            {
+                var dir = AppDomain.CurrentDomain.BaseDirectory;
+                var fileName = Path.Combine(dir, batchFileName);
+                Process proc = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = fileName,
+                        WorkingDirectory = dir,
+                        Arguments = userName,
+                        UseShellExecute = true
+                    }
+                };
+
+                proc.Start();
+                proc.WaitForExit();
+                int exitCode = proc.ExitCode;
+                proc.Close();
+
+                retVal = (exitCode == 0);
+                if (!retVal)
+                {
+                    MessageBox.Show("Could not create user.\nThe batch file " + fileName + " returned an error.\n\nPlease run this batch file manually to check the reason", "ACAT Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to create user. Error executing batchfile " + batchFileName + ".\nError: " + ex.ToString());
+                retVal = false;
+            }
+            return retVal;
+        }
+
+        /// <summary>
+        /// Creates the user and profile directories if they
+        /// don't exist
+        /// </summary>
+        /// <returns></returns>
+        private static bool createUserAndProfile()
+        {
+            if (!UserManager.CurrentUserExists())
+            {
+                const string batchFile = "CreateUser.bat";
+
+                if (!createUser(batchFile, UserManager.CurrentUser))
+                {
+                    return false;
+                }
+            }
+
+            if (!ProfileManager.ProfileExists(ProfileManager.CurrentProfile))
+            {
+                ProfileManager.CreateProfile(ProfileManager.CurrentProfile);
+            }
+
+            if (!ProfileManager.ProfileExists(ProfileManager.CurrentProfile))
+            {
+                MessageBox.Show("Could not find profile " + ProfileManager.CurrentProfile);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the specified string is an option flag.
+        /// it should start with a - or a /
+        /// </summary>
+        /// <param name="arg">arg to check</param>
+        /// <returns>true if it is</returns>
+        private static bool isOption(String arg)
+        {
+            if (!String.IsNullOrEmpty(arg))
+            {
+                return (arg[0] == '/' || arg[0] == '-');
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Loads user settings from the user's profile directory
+        /// </summary>
+        /// <returns>true on success</returns>
+        private static bool loadUserPreferences()
+        {
+            ACATPreferences.PreferencesFilePath = ProfileManager.GetFullPath("Settings.xml");
+            ACATPreferences.DefaultPreferencesFilePath = ProfileManager.GetFullPath("DefaultSettings.xml");
+
+            FileUtils.AppPreferencesDir = ProfileManager.CurrentProfileDir;
+
+            Common.AppPreferences = ACATPreferences.Load();
+            if (Common.AppPreferences == null)
+            {
+                MessageBox.Show("Unable to read preferences from " + FileUtils.AppPreferencesDir);
+                return false;
+            }
+
+            Common.AppPreferences.Save();
+
+            CoreGlobals.AppPreferences = Common.AppPreferences;
+
+            ACATPreferences.SaveDefaults<ACATPreferences>(ACATPreferences.DefaultPreferencesFilePath);
+
+            Common.AppPreferences.DebugAssertOnError = false;
+
+            ACATPreferences.ApplicationAssembly = Assembly.GetExecutingAssembly();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Parses the command line arguments. Format of the
+        /// arguments are -option <option arg>
+        /// </summary>
+        /// <param name="args">Args to parse</param>
+        private static void parseCommandLine(string[] args)
+        {
+            var parseState = ParseState.Next;
+
+            for (int index = 0; index < args.Length; index++)
+            {
+                switch (args[index].ToLower().Trim())
+                {
+                    case "-user":
+                    case "/user":
+                        parseState = ParseState.Username;
+                        break;
+
+                    case "-profile":
+                    case "/profile":
+                        parseState = ParseState.Profile;
+                        break;
+
+                    case "-panelconfig":
+                    case "/panelconfig":
+                        parseState = ParseState.PanelConfig;
+                        break;
+                }
+
+                switch (parseState)
+                {
+                    case ParseState.Profile:
+                        args[index] = args[index].Trim();
+                        if (!isOption(args[index]))
+                        {
+                            _profile = args[index].Trim();
+                        }
+
+                        break;
+
+                    case ParseState.Username:
+                        if (!isOption(args[index]))
+                        {
+                            _userName = args[index].Trim();
+                        }
+
+                        break;
+
+                    case ParseState.PanelConfig:
+                        if (!isOption(args[index]))
+                        {
+                            _panelConfig = args[index].Trim();
+                        }
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the active profile name
+        /// </summary>
+        private static void setProfileName()
+        {
+            // if the profile has not been specified in the
+            // command line, use the one from GlobalPreferences
+            if (string.IsNullOrEmpty(_profile))
+            {
+                ProfileManager.CurrentProfile = CoreGlobals.AppGlobalPreferences.CurrentProfile.Trim();
+                if (String.IsNullOrEmpty(ProfileManager.CurrentProfile))
+                {
+                    ProfileManager.CurrentProfile = ProfileManager.DefaultProfileName;
+                }
+            }
+            else
+            {
+                ProfileManager.CurrentProfile = _profile;
+            }
+        }
+
+        private static void setUserName()
+        {
+            // if username has not been specified in the
+            // command line, use the one from GlobalPreferences
+            if (string.IsNullOrEmpty(_userName))
+            {
+                //UserManager.CurrentUser = CoreGlobals.AppGlobalPreferences.CurrentUser.Trim();
+                UserManager.CurrentUser = "ACAT";  // hardcode for
+                if (String.IsNullOrEmpty(UserManager.CurrentUser))
+                {
+                    UserManager.CurrentUser = UserManager.DefaultUserName;
+                }
+            }
+            else
+            {
+                UserManager.CurrentUser = _userName;
+            }
+        }
+    }
+}
+<?xml version="1.0"?>
+<configuration>
+  <startup useLegacyV2RuntimeActivationPolicy="true">
+    
+  <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5"/></startup>
+  <appSettings>
+
+    <add key="SendKeys" value="SendInput"/>
+
+  </appSettings>
+  <system.serviceModel>
+        <bindings>
+              <netNamedPipeBinding>
+                    <binding name="NetNamedPipeBinding_Presage" />
+              </netNamedPipeBinding>
+        </bindings>
+        <client>
+              <endpoint address="net.pipe://localhost/PresageService/v1/presage"
+                    binding="netNamedPipeBinding" bindingConfiguration="NetNamedPipeBinding_Presage"
+                    contract="PresageService.Presage" name="NetNamedPipeBinding_Presage">
+              </endpoint>
+        </client>
+    </system.serviceModel>
+</configuration>
+rem @echo off
+if not exist %WINDIR%\system32\xcopy.exe goto checkWow64
+set XCOPYEXE=%WINDIR%\system32\xcopy.exe
+goto next
+:checkWow64
+if not exist %WINDIR%\SYSWow64\xcopy.exe goto error
+set XCOPYEXE=%WINDIR%\SYSWow64\xcopy.exe
+goto next
+:error
+echo "*** ERROR *** Xcopy not found on your machine
+pause
+exit 2
+:next
+if %1a==a goto default
+set ACATUSER=%1
+goto create
+:default
+set ACATUSER=ACAT
+:create
+if not exist Users mkdir Users
+if not exist Users\%ACATUSER% mkdir Users\%ACATUSER%
+%XCOPYEXE% /s /i /e /y install\Users\ACAT Users\%ACATUSER%
+exit 0
+using System;
+using System.Diagnostics.CodeAnalysis;
+using ACAT.Lib.Core.Utility;
+
+#region SupressStyleCopWarnings
+
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1126:PrefixCallsCorrectly",
+        Scope = "namespace",
+        Justification = "Not needed. ACAT naming conventions takes care of this")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1101:PrefixLocalCallsWithThis",
+        Scope = "namespace",
+        Justification = "Not needed. ACAT naming conventions takes care of this")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.ReadabilityRules",
+        "SA1121:UseBuiltInTypeAlias",
+        Scope = "namespace",
+        Justification = "Since they are just aliases, it doesn't really matter")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.DocumentationRules",
+        "SA1200:UsingDirectivesMustBePlacedWithinNamespace",
+        Scope = "namespace",
+        Justification = "ACAT guidelines")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.NamingRules",
+        "SA1309:FieldNamesMustNotBeginWithUnderscore",
+        Scope = "namespace",
+        Justification = "ACAT guidelines. Private fields begin with an underscore")]
+[module: SuppressMessage(
+        "StyleCop.CSharp.NamingRules",
+        "SA1300:ElementMustBeginWithUpperCaseLetter",
+        Scope = "namespace",
+        Justification = "ACAT guidelines. Private/Protected methods begin with lowercase")]
+
+#endregion SupressStyleCopWarnings
+
+namespace ACAT.Applications.ACATApp
+{
+    /// <summary>
+    /// Settings for the ACAT application.
+    /// </summary>
+    [Serializable]
+    public class ACATAppSettings : PreferencesBase
+    {
+        /// <summary>
+        /// Name of the settings file
+        /// </summary>
+        [NonSerialized]
+        public static String PreferencesFilePath;
+
+        public float ScannerScaleFactor = 10.0f;
+
+        public Windows.WindowPosition ScannerPosition = Windows.WindowPosition.MiddleRight;
+
+
+        /// <summary>
+        /// Initializes a new instance of the class.
+        /// </summary>
+        public ACATAppSettings()
+        {
+        }
+
+        /// <summary>
+        /// Load settings
+        /// </summary>
+        /// <returns>settings object</returns>
+        public static ACATAppSettings Load()
+        {
+            return PreferencesBase.Load<ACATAppSettings>(PreferencesFilePath);
+        }
+
+        /// <summary>
+        /// Save settings.  No op for now
+        /// </summary>
+        /// <returns>true always</returns>
+        public override bool Save()
+        {
+            return PreferencesBase.Save<ACATAppSettings>(this, PreferencesFilePath);
+        }
+    }
+}
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{06DE8A17-5D58-4858-BF18-86F7DB74E539}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACATApp</RootNamespace>
+    <AssemblyName>ACATApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Properties\ACAT.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ACATCore">
+      <HintPath>..\..\Redistributable\ACATCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ACATExtension">
+      <HintPath>..\..\Redistributable\ACATExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\PresageService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <None Include="Service References\PresageService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\PresageService\configuration.svcinfo" />
+    <None Include="Service References\PresageService\configuration91.svcinfo" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Install\Users\ACAT\Abbreviations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\Actuators.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\LaunchAppSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\PreferredPanelConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\SAPIPronunciations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\SpellCheck.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Install\Users\ACAT\SwitchConfigMap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CreateUser.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\PresageService\10.wsdl" />
+    <None Include="Service References\PresageService\10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PresageService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PresageService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\ACAT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PresageService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Install\Users\ACAT\WordPredictors\Presage\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)deploy.bat" ..\..\..\.. $(Configuration)</PostBuildEvent>
+  </PropertyGroup>
+
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
+/****************************************************************************
+ *   Author: Kyra Taub, 2017                                        *
+ ****************************************************************************/
+
+/****************************************************************************
+ *   Author: Juergen Pfeifer, 1997                                          *
+ ****************************************************************************/
+
+#include "internal.h"
+#include "cursesapp.h"
+
+#if CPP_HAS_TRY_CATCH && HAVE_IOSTREAM
+#include <iostream>
+#else
+#undef CPP_HAS_TRY_CATCH
+#define CPP_HAS_TRY_CATCH 0
+#endif
+
+MODULE_ID("$Id: cursesmain.cc,v 1.14 2007/04/07 17:10:11 tom Exp $")
+
+#if HAVE_LOCALE_H
+#include <locale.h>
+#else
+#define setlocale(name,string) /* nothing */
+#endif
+
+#if NO_LEAKS
+#include <nc_alloc.h>
+#endif
+
+/* This is the default implementation of main() for a NCursesApplication.
+ * You only have to instantiate a static NCursesApplication object in your
+ * main application source file and link this module with your application.
+ */
+int main(int argc, char* argv[])
+{
+  setlocale(LC_ALL, "");
+
+  NCursesApplication* A = NCursesApplication::getApplication();
+  if (!A)
+    return(1);
+  else {
+    int res;
+
+    A->handleArgs(argc,argv);
+    ::endwin();
+#if CPP_HAS_TRY_CATCH
+    try {
+      res = (*A)();
+      ::endwin();
+    }
+    catch(const NCursesException &e) {
+      ::endwin();
+      std::cerr << e.message << std::endl;
+      res = e.errorno;
+    }
+#else
+    res = (*A)();
+    ::endwin();
+#endif
+#if NO_LEAKS
+    delete A;
+    _nc_free_and_exit(res);
+#else
+    return(res);
+#endif
+  }
+}
+#include "internal.h"
+#include "cursesp.h"
+
+MODULE_ID("$Id: cursesp.cc,v 1.25 2005/08/06 22:12:36 tom Exp $")
+
+NCursesPanel* NCursesPanel::dummy = static_cast<NCursesPanel*>(0);
+
+void NCursesPanel::init()
+{
+  p = ::new_panel(w);
+  if (!p)
+    OnError(ERR);
+
+  UserHook* hook = new UserHook;
+  hook->m_user  = NULL;
+  hook->m_back  = this;
+  hook->m_owner = p;
+  ::set_panel_userptr(p, reinterpret_cast<void *>(hook));
+}
+
+NCursesPanel::~NCursesPanel()
+{
+  UserHook* hook = UserPointer();
+  assert(hook != 0 && hook->m_back==this && hook->m_owner==p);
+  delete hook;
+  ::del_panel(p);
+  ::update_panels();
+}
+
+void
+NCursesPanel::redraw()
+{
+  PANEL *pan;
+
+  pan = ::panel_above(NULL);
+  while (pan) {
+    ::touchwin(panel_window(pan));
+    pan = ::panel_above(pan);
+  }
+  ::update_panels();
+  ::doupdate();
+}
+
+int
+NCursesPanel::refresh()
+{
+  ::update_panels();
+  return ::doupdate();
+}
+
+int
+NCursesPanel::noutrefresh()
+{
+  ::update_panels();
+  return OK;
+}
+
+void
+NCursesPanel::boldframe(const char *title, const char* btitle)
+{
+  standout();
+  frame(title, btitle);
+  standend();
+}
+
+void
+NCursesPanel::frame(const char *title,const char *btitle)
+{
+  int err = OK;
+  if (!title && !btitle) {
+    err = box();
+  }
+  else {
+    err = box();
+    if (err==OK)
+      label(title,btitle);
+  }
+  OnError(err);
+}
+
+void
+NCursesPanel::label(const char *tLabel, const char *bLabel)
+{
+  if (tLabel)
+    centertext(0,tLabel);
+  if (bLabel)
+    centertext(maxy(),bLabel);
+}
+
+void
+NCursesPanel::centertext(int row,const char *labelText)
+{
+  if (labelText) {
+    int x = (maxx() - ::strlen(labelText)) / 2;
+    if (x<0)
+      x=0;
+    OnError(addstr(row, x, labelText, width()));
+  }
+}
+
+int
+NCursesPanel::getKey(void)
+{
+  return getch();
+}
+#ifndef NCURSES_CURSESP_H_incl
+#define NCURSES_CURSESP_H_incl 1
+
+// $Id: cursesp.h,v 1.29 2008/08/16 17:20:23 tom Exp $
+
+#include <cursesw.h>
+
+extern "C" {
+#  include <panel.h>
+}
+
+class NCURSES_IMPEXP NCursesPanel
+  : public NCursesWindow
+{
+protected:
+  PANEL *p;
+  static NCursesPanel *dummy;
+
+private:
+  // This structure is used for the panel's user data field to link the
+  // PANEL* to the C++ object and to provide extra space for a user pointer.
+  typedef struct {
+    void*               m_user;      // the pointer for the user's data
+    const NCursesPanel* m_back;      // backward pointer to C++ object
+    const PANEL*        m_owner;     // the panel itself
+  } UserHook;
+
+  inline UserHook *UserPointer()
+  {
+    UserHook* uptr = reinterpret_cast<UserHook*>(
+                           const_cast<void *>(::panel_userptr (p)));
+    return uptr;
+  }
+
+  void init();                       // Initialize the panel object
+
+protected:
+  void set_user(void *user)
+  {
+    UserHook* uptr = UserPointer();
+    if (uptr != 0 && uptr->m_back==this && uptr->m_owner==p) {
+      uptr->m_user = user;
+    }
+  }
+  // Set the user pointer of the panel.
+
+  void *get_user()
+  {
+    UserHook* uptr = UserPointer();
+    void *result = 0;
+    if (uptr != 0 && uptr->m_back==this && uptr->m_owner==p)
+      result = uptr->m_user;
+    return result;
+  }
+
+  void OnError (int err) const THROWS(NCursesPanelException)
+  {
+    if (err==ERR)
+      THROW(new NCursesPanelException (this, err));
+  }
+  // If err is equal to the curses error indicator ERR, an error handler
+  // is called.
+
+  // Get a keystroke. Default implementation calls getch()
+  virtual int getKey(void);
+
+public:
+  NCursesPanel(int nlines,
+	       int ncols,
+	       int begin_y = 0,
+	       int begin_x = 0)
+    : NCursesWindow(nlines,ncols,begin_y,begin_x), p(0)
+  {
+    init();
+  }
+  // Create a panel with this size starting at the requested position.
+
+  NCursesPanel()
+    : NCursesWindow(::stdscr), p(0)
+  {
+    init();
+  }
+  // This constructor creates the default Panel associated with the
+  // ::stdscr window
+
+  NCursesPanel& operator=(const NCursesPanel& rhs)
+  {
+    if (this != &rhs) {
+      *this = rhs;
+      NCursesWindow::operator=(rhs);
+    }
+    return *this;
+  }
+
+  NCursesPanel(const NCursesPanel& rhs)
+    : NCursesWindow(rhs),
+      p(rhs.p)
+  {
+  }
+
+  virtual ~NCursesPanel();
+
+  // basic manipulation
+  inline void hide()
+  {
+    OnError (::hide_panel(p));
+  }
+  // Hide the panel. It stays in the stack but becomes invisible.
+
+  inline void show()
+  {
+    OnError (::show_panel(p));
+  }
+  // Show the panel, i.e. make it visible.
+
+  inline void top()
+  {
+    OnError (::top_panel(p));
+  }
+  // Make this panel the top panel in the stack.
+
+  inline void bottom()
+  {
+    OnError (::bottom_panel(p));
+  }
+  // Make this panel the bottom panel in the stack.
+  // N.B.: The panel associated with ::stdscr is always on the bottom. So
+  // actually bottom() makes the panel the first above ::stdscr.
+
+  virtual int mvwin(int y, int x)
+  {
+    OnError(::move_panel(p, y, x));
+    return OK;
+  }
+
+  inline bool hidden() const
+  {
+    return (::panel_hidden (p) ? TRUE : FALSE);
+  }
+  // Return TRUE if the panel is hidden, FALSE otherwise.
+
+/* The functions panel_above() and panel_below() are not reflected in
+   the NCursesPanel class. The reason for this is, that we cannot
+   assume that a panel retrieved by those operations is one wrapped
+   by a C++ class. Although this situation might be handled, we also
+   need a reverse mapping from PANEL to NCursesPanel which needs some
+   redesign of the low level stuff. At the moment, we define them in the
+   interface but they will always produce an error. */
+  inline NCursesPanel& above() const
+  {
+    OnError(ERR);
+    return *dummy;
+  }
+
+  inline NCursesPanel& below() const
+  {
+    OnError(ERR);
+    return *dummy;
+  }
+
+  // Those two are rewrites of the corresponding virtual members of
+  // NCursesWindow
+  virtual int refresh();
+  // Propagate all panel changes to the virtual screen and update the
+  // physical screen.
+
+  virtual int noutrefresh();
+  // Propagate all panel changes to the virtual screen.
+
+  static void redraw();
+  // Redraw all panels.
+
+  // decorations
+  virtual void frame(const char* title=NULL,
+		     const char* btitle=NULL);
+  // Put a frame around the panel and put the title centered in the top line
+  // and btitle in the bottom line.
+
+  virtual void boldframe(const char* title=NULL,
+			 const char* btitle=NULL);
+  // Same as frame(), but use highlighted attributes.
+
+  virtual void label(const char* topLabel,
+		     const char* bottomLabel);
+  // Put the title centered in the top line and btitle in the bottom line.
+
+  virtual void centertext(int row,const char* label);
+  // Put the label text centered in the specified row.
+};
+
+/* We use templates to provide a typesafe mechanism to associate
+ * user data with a panel. A NCursesUserPanel<T> is a panel
+ * associated with some user data of type T.
+ */
+template<class T> class NCursesUserPanel : public NCursesPanel
+{
+public:
+  NCursesUserPanel (int nlines,
+		    int ncols,
+		    int begin_y = 0,
+		    int begin_x = 0,
+		    const T* p_UserData = STATIC_CAST(T*)(0))
+    : NCursesPanel (nlines, ncols, begin_y, begin_x)
+  {
+      if (p)
+	set_user (const_cast<void *>(p_UserData));
+  };
+  // This creates an user panel of the requested size with associated
+  // user data pointed to by p_UserData.
+
+  NCursesUserPanel(const T* p_UserData = STATIC_CAST(T*)(0)) : NCursesPanel()
+  {
+    if (p)
+      set_user(const_cast<void *>(p_UserData));
+  };
+  // This creates an user panel associated with the ::stdscr and user data
+  // pointed to by p_UserData.
+
+  virtual ~NCursesUserPanel() {};
+
+  T* UserData (void) const
+  {
+    return reinterpret_cast<T*>(get_user ());
+  };
+  // Retrieve the user data associated with the panel.
+
+  virtual void setUserData (const T* p_UserData)
+  {
+    if (p)
+      set_user (const_cast<void *>(p_UserData));
+  }
+  // Associate the user panel with the user data pointed to by p_UserData.
+};
+
+#endif /* NCURSES_CURSESP_H_incl */
+#include "internal.h"
+
+#include <etip.h>
+#include <cursesw.h>
+
+MODULE_ID("$Id: cursespad.cc,v 1.13 2008/08/04 18:59:22 tom Exp $")
+
+NCursesPad::NCursesPad(int nlines, int ncols)
+  : NCursesWindow(),
+    viewWin(static_cast<NCursesWindow*>(0)),
+    viewSub(static_cast<NCursesWindow*>(0)),
+    h_gridsize(0), v_gridsize(0),
+    min_row(0), min_col(0)
+{
+  w = ::newpad(nlines, ncols);
+  if (static_cast<WINDOW*>(0) == w) {
+    count--;
+    err_handler("Cannot construct window");
+  }
+  alloced = TRUE;
+}
+
+
+int NCursesPad::driver (int key)
+{
+  // Default implementation
+  switch(key) {
+  case KEY_UP:
+    // =======
+    return REQ_PAD_UP;
+  case KEY_DOWN:
+    // =========
+    return REQ_PAD_DOWN;
+  case KEY_LEFT:
+    // =========
+    return REQ_PAD_LEFT;
+  case KEY_RIGHT:
+    // ==========
+    return REQ_PAD_RIGHT;
+  case KEY_EXIT:
+    // =========
+  case CTRL('X'):
+    // ==========
+    return REQ_PAD_EXIT;
+
+  default: return(key);
+  }
+}
+
+
+void NCursesPad::operator()(void)
+{
+  NCursesWindow* W = Win();
+
+  if (static_cast<NCursesWindow*>(0) != W) {
+    int Width  = W->width();
+    int Height = W->height();
+
+    int req = REQ_PAD_REFRESH;
+
+    W->keypad(TRUE);
+    W->meta(TRUE);
+    refresh();
+
+    do {
+      bool changed = FALSE;
+
+      switch (req) {
+      case REQ_PAD_REFRESH:
+	// ================
+	changed = TRUE;
+	break;
+      case REQ_PAD_LEFT:
+	// =============
+	if (min_col > 0) {
+	  changed = TRUE;
+	  if (min_col < h_gridsize)
+	    min_col = 0;
+	  else
+	    min_col -= h_gridsize;
+	}
+	else
+	  OnNavigationError(req);
+	break;
+      case REQ_PAD_RIGHT:
+	// ==============
+	if (min_col < (width() - Width - 1)) {
+	  changed = TRUE;
+	  if (min_col > (width() - Width - h_gridsize - 1))
+	    min_col = width() - Width - 1;
+	  else
+	    min_col += h_gridsize;
+	}
+	else
+	  OnNavigationError(req);
+	break;
+      case REQ_PAD_UP:
+	// ===========
+	if (min_row > 0) {
+	  changed = TRUE;
+	  if (min_row < v_gridsize)
+	    min_row = 0;
+	  else
+	    min_row -= v_gridsize;
+	}
+	else
+	  OnNavigationError(req);
+	break;
+      case REQ_PAD_DOWN:
+	// =============
+	if (min_row < (height() - Height - 1)) {
+	  changed = TRUE;
+	  if (min_row > (height() - Height - v_gridsize - 1))
+	    min_row = height() - Height - 1;
+	  else
+	    min_row += v_gridsize;
+	}
+	else
+	  OnNavigationError(req);
+	break;
+
+      default:
+	OnUnknownOperation(req);
+      }
+
+      if (changed) {
+	noutrefresh();
+	W->syncup();
+	OnOperation(req);
+	viewWin->refresh();
+      }
+    } while( (req=driver(W->getch())) != REQ_PAD_EXIT );
+  }
+}
+
+
+int NCursesPad::refresh()
+{
+  int res = noutrefresh();
+  if (res==OK && (static_cast<NCursesWindow*>(0) != viewWin)) {
+    res = (viewWin->refresh());
+  }
+  return(res);
+}
+
+int NCursesPad::noutrefresh()
+{
+  int res = OK;
+  NCursesWindow* W = Win();
+  if (static_cast<NCursesWindow*>(0) != W) {
+    int high = W->maxy();
+    int wide = W->maxx();
+    res = copywin(*W, min_row, min_col,
+		  0, 0, high, wide,
+		  FALSE);
+    if (res==OK) {
+      W->syncup();
+      res = viewWin->noutrefresh();
+    }
+  }
+  return (res);
+}
+
+void NCursesPad::setWindow(NCursesWindow& view,
+			   int v_grid NCURSES_PARAM_INIT(1),
+			   int h_grid NCURSES_PARAM_INIT(1))
+{
+  viewWin = &view;
+  min_row = min_col = 0;
+  if (h_grid <=0 || v_grid <= 0)
+    err_handler("Illegal Gridsize");
+  else {
+    h_gridsize = h_grid;
+    v_gridsize = v_grid;
+  }
+}
+
+void NCursesPad::setSubWindow(NCursesWindow& sub)
+{
+  if (static_cast<NCursesWindow*>(0) == viewWin)
+    err_handler("Pad has no viewport");
+  assert(viewWin != 0);
+  if (!viewWin->isDescendant(sub))
+    THROW(new NCursesException("NCursesFramePad", E_SYSTEM_ERROR));
+  viewSub = &sub;
+}
+
+void NCursesFramedPad::OnOperation(int pad_req)
+{
+  NCursesWindow* W = Win();
+  NCursesWindow* W2 = getWindow();
+
+  if ((static_cast<NCursesWindow*>(0) != W) && (static_cast<NCursesWindow*>(0) != W2)) {
+    int Width  = W->width();
+    int Height = W->height();
+    int i, row, col, h_len, v_len;
+
+    h_len = (Width*Width + width() - 1)/width();
+    if (h_len==0)
+      h_len = 1;
+    if (h_len > Width)
+      h_len = Width;
+
+    v_len = (Height*Height + height() - 1)/height();
+    if (v_len==0)
+      v_len = 1;
+    if (v_len > Height)
+      v_len = Height;
+
+    col  = (min_col * Width + width() - 1)  / width();
+    if (col + h_len > Width)
+      col = Width - h_len;
+
+    row  = (min_row * Height + height() - 1) / height();
+    if (row + v_len > Height)
+      row = Height - v_len;
+
+    W2->vline(1,Width+1,Height);
+    W2->attron(A_REVERSE);
+    if (v_len>=2) {
+      W2->addch(row+1,Width+1,ACS_UARROW);
+      for(i=2;i<v_len;i++)
+	W2->addch(row+i,Width+1,' ');
+      W2->addch(row+v_len,Width+1,ACS_DARROW);
+    }
+    else {
+      for(i=1;i<=v_len;i++)
+	W2->addch(row+i,Width+1,' ');
+    }
+    W2->attroff(A_REVERSE);
+
+    W2->hline(Height+1,1,Width);
+    W2->attron(A_REVERSE);
+    if (h_len >= 2) {
+      W2->addch(Height+1,col+1,ACS_LARROW);
+      for(i=2;i<h_len;i++)
+	W2->addch(Height+1,col+i,' ');
+      W2->addch(Height+1,col+h_len,ACS_RARROW);
+    }
+    else {
+      for(i=1;i<=h_len;i++)
+	W2->addch(Height+1,col+i,' ');
+    }
+    W2->attroff(A_REVERSE);
+  }
+}
+/*
+ * Authors:
+ *	Thomas E. Dickey
+ *	Juergen Pfeifer
+ *
+ * The NCursesWindow class was originally based on a file written by
+ * Eric Newton, later modified by Ulrich Drepper and Anatoly Ivasyuk.
+ * However, aside from the compatible interface definition, no trace
+ * of the original code remains in this version: it consists only of
+ * changes introduced since 1995.
+ */
+
+#include "internal.h"
+#include "cursesw.h"
+
+MODULE_ID("$Id: cursesw.cc,v 1.51 2009/03/28 21:31:37 tom Exp $")
+
+#define COLORS_NEED_INITIALIZATION  -1
+#define COLORS_NOT_INITIALIZED       0
+#define COLORS_MONOCHROME            1
+#define COLORS_ARE_REALLY_THERE      2
+
+#define HaveColors() (colorInitialized == COLORS_ARE_REALLY_THERE)
+
+// declare static variables for the class
+long NCursesWindow::count = 0L;
+bool NCursesWindow::b_initialized = FALSE;
+
+int
+NCursesWindow::scanw(const char* fmt, ...)
+{
+    int result = ERR;
+
+    va_list args;
+    va_start(args, fmt);
+    result = ::vw_scanw (w, const_cast<NCURSES_CONST char *>(fmt), args);
+    va_end(args);
+
+    return result;
+}
+
+
+int
+NCursesWindow::scanw(int y, int x, const char* fmt, ...)
+{
+    int result = ERR;
+
+    if (::wmove(w, y, x) != ERR) {
+	va_list args;
+	va_start(args, fmt);
+	result = ::vw_scanw (w, const_cast<NCURSES_CONST char *>(fmt), args);
+	va_end(args);
+    }
+    return result;
+}
+
+
+int
+NCursesWindow::scanw(const char* fmt, va_list args)
+{
+    int result = ERR;
+
+    result = ::vw_scanw (w, const_cast<NCURSES_CONST char *>(fmt), args);
+
+    return result;
+}
+
+
+int
+NCursesWindow::scanw(int y, int x, const char* fmt, va_list args)
+{
+    int result = ERR;
+
+    if (::wmove(w, y, x) != ERR) {
+	result = ::vw_scanw (w, const_cast<NCURSES_CONST char *>(fmt), args);
+    }
+    return result;
+}
+
+
+int
+NCursesWindow::printw(const char * fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    int result = ::vw_printw(w, fmt, args);
+    va_end(args);
+    return result;
+}
+
+
+int
+NCursesWindow::printw(int y, int x, const char * fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    int result = ::wmove(w, y, x);
+    if (result == OK) {
+	result = ::vw_printw(w, fmt, args);
+    }
+    va_end(args);
+    return result;
+}
+
+
+int
+NCursesWindow::printw(const char * fmt, va_list args)
+{
+    int result = ::vw_printw(w, fmt, args);
+    return result;
+}
+
+
+int
+NCursesWindow::printw(int y, int x, const char * fmt, va_list args)
+{
+    int result = ::wmove(w, y, x);
+    if (result == OK) {
+	result = ::vw_printw(w, fmt, args);
+    }
+    return result;
+}
+
+
+void
+NCursesWindow::set_keyboard(void)
+{
+    keypad(TRUE);
+    meta(TRUE);
+}
+
+void
+NCursesWindow::err_handler(const char *msg) const THROWS(NCursesException)
+{
+  THROW(new NCursesException(msg));
+}
+
+void
+NCursesWindow::initialize()
+{
+    if (!b_initialized) {
+	::initscr();
+	b_initialized = TRUE;
+	if (colorInitialized == COLORS_NEED_INITIALIZATION) {
+	    colorInitialized = COLORS_NOT_INITIALIZED;
+	    useColors();
+	}
+	::noecho();
+	::cbreak();
+    }
+}
+
+void
+NCursesWindow::constructing()
+{
+    initialize();
+    ++count;
+}
+
+NCursesWindow::NCursesWindow()
+  : w(0), alloced(FALSE), par(0), subwins(0), sib(0)
+{
+    constructing();
+
+    w = static_cast<WINDOW *>(0);
+    set_keyboard();
+}
+
+NCursesWindow::NCursesWindow(int nlines, int ncols, int begin_y, int begin_x)
+  : w(0), alloced(TRUE), par(0), subwins(0), sib(0)
+{
+    constructing();
+
+    w = ::newwin(nlines, ncols, begin_y, begin_x);
+    if (w == 0) {
+	err_handler("Cannot construct window");
+    }
+    set_keyboard();
+}
+
+NCursesWindow::NCursesWindow(WINDOW* window)
+  : w(0), alloced(FALSE), par(0), subwins(0), sib(0)
+{
+    constructing();
+
+    // We used to use a reference on the "window" parameter, but we cannot do
+    // that with an opaque pointer (see NCURSES_OPAQUE).  If the parameter was
+    // "::stdscr", that is first set via the "constructing() call, and is null
+    // up to that point.  So we allow a null pointer here as meaning the "same"
+    // as "::stdscr".
+    w = window ? window : ::stdscr;
+    set_keyboard();
+}
+
+NCursesWindow::NCursesWindow(NCursesWindow& win, int ny, int nx,
+			     int begin_y, int begin_x, char absrel)
+  : w(0), alloced(TRUE), par(0), subwins(0), sib(0)
+{
+    constructing();
+    if (absrel == 'a') {	// absolute origin
+	begin_y -= win.begy();
+	begin_x -= win.begx();
+    }
+
+    // Link this window into its parent's list of subwindows.
+    // We use derwin(), since this also works for pads.
+    w = ::derwin(win.w, ny, nx, begin_y, begin_x);
+    if (w == 0) {
+	err_handler("Cannot construct subwindow");
+    }
+
+    par = &win;
+    sib = win.subwins;
+    win.subwins = this;
+}
+
+NCursesWindow::NCursesWindow(NCursesWindow& win,
+				bool do_box NCURSES_PARAM_INIT(TRUE))
+  : w(0), alloced(TRUE), par(0), subwins(0), sib(0)
+{
+    constructing();
+    int myHeight = win.height();
+    int myWidth  = win.width();
+    w = :: derwin(win.w, myHeight - 2, myWidth - 2, 1, 1);
+    if (w == 0) {
+	err_handler("Cannot construct subwindow");
+    }
+
+    par = &win;
+    sib = win.subwins;
+    win.subwins = this;
+    subwins = 0;
+
+    if (do_box) {
+	win.box();
+	win.touchwin();
+    }
+}
+
+NCursesWindow NCursesWindow::Clone()
+{
+    WINDOW *d = ::dupwin(w);
+    NCursesWindow W(d);
+    W.subwins = subwins;
+    W.sib = sib;
+    W.par = par;
+    W.alloced = alloced;
+    return W;
+}
+
+typedef int (*RIPOFFINIT)(NCursesWindow&);
+static RIPOFFINIT R_INIT[5];       // There can't be more
+static int r_init_idx   = 0;
+static RIPOFFINIT* prip = R_INIT;
+
+NCursesWindow::NCursesWindow(WINDOW *win, int ncols)
+  : w(0), alloced(FALSE), par(0), subwins(0), sib(0)
+{
+    initialize();
+    w = win;
+}
+
+int _nc_xx_ripoff_init(WINDOW *w, int ncols)
+{
+    int res = ERR;
+
+    RIPOFFINIT init = *prip++;
+    if (init) {
+	res = init(*(new NCursesWindow(w,ncols)));
+    }
+    return res;
+}
+
+int NCursesWindow::ripoffline(int ripoff_lines,
+			      int (*init)(NCursesWindow& win))
+{
+    int code = ::_nc_ripoffline(ripoff_lines,_nc_xx_ripoff_init);
+    if (code == OK && init && ripoff_lines) {
+	R_INIT[r_init_idx++] = init;
+    }
+    return code;
+}
+
+bool
+NCursesWindow::isDescendant(NCursesWindow& win)
+{
+    bool result = FALSE;
+
+    for (NCursesWindow* p = subwins; p != NULL; p = p->sib) {
+	if (p == &win || p->isDescendant(win)) {
+	    result = TRUE;
+	    break;
+	}
+    }
+    return result;
+}
+
+void
+NCursesWindow::kill_subwindows()
+{
+    NCursesWindow* p = subwins;
+
+    subwins = 0;
+    while (p != 0) {
+	NCursesWindow* q = p->sib;
+	p->kill_subwindows();
+	if (p->alloced) {
+	    if (p->w != 0)
+		::delwin(p->w);
+	}
+	delete p;
+	p = q;
+    }
+}
+
+
+NCursesWindow::~NCursesWindow()
+{
+    kill_subwindows();
+
+    if (par != 0) {
+	// Remove this window from the parent's list of subwindows.
+	NCursesWindow * next = par->subwins;
+	NCursesWindow * prev = 0;
+	while (next != 0) {
+	    if (next == this) {
+		if (prev != 0) {
+		    prev->sib = next->sib;
+		} else {
+		    par->subwins = next->sib;
+		}
+		break;
+	    }
+	    prev = next;
+	    next = next->sib;
+	}
+    }
+
+    if (alloced && w != 0)
+	::delwin(w);
+
+    if (alloced) {
+	--count;
+	if (count == 0) {
+	    ::endwin();
+	} else if (count < 0) { // cannot happen!
+	    err_handler("Too many windows destroyed");
+	}
+    }
+}
+
+// ---------------------------------------------------------------------
+// Color stuff
+//
+int NCursesWindow::colorInitialized = COLORS_NOT_INITIALIZED;
+
+void
+NCursesWindow::useColors(void)
+{
+    if (colorInitialized == COLORS_NOT_INITIALIZED) {
+	if (b_initialized) {
+	    if (::has_colors()) {
+		::start_color();
+		colorInitialized = COLORS_ARE_REALLY_THERE;
+	    } else {
+		colorInitialized = COLORS_MONOCHROME;
+	    }
+	} else {
+	    colorInitialized = COLORS_NEED_INITIALIZATION;
+	}
+    }
+}
+
+short
+NCursesWindow::getPair() const
+{
+    return static_cast<short>(PAIR_NUMBER(getattrs(w)));
+}
+
+short
+NCursesWindow::getcolor(int getback) const
+{
+    short fore, back;
+
+    if (HaveColors()) {
+	if (::pair_content(getPair(), &fore, &back) == ERR)
+	    err_handler("Can't get color pair");
+    } else {
+	// Monochrome means white on black
+	back = COLOR_BLACK;
+	fore = COLOR_WHITE;
+    }
+    return getback ? back : fore;
+}
+
+int NCursesWindow::NumberOfColors()
+{
+    return (HaveColors()) ? COLORS : 1;
+}
+
+short
+NCursesWindow::getcolor() const
+{
+    return (HaveColors()) ? getPair() : 0;
+}
+
+int
+NCursesWindow::setpalette(short fore, short back, short pair)
+{
+    return (HaveColors()) ? ::init_pair(pair, fore, back) : OK;
+}
+
+int
+NCursesWindow::setpalette(short fore, short back)
+{
+    return setpalette(fore, back, getPair());
+}
+
+
+int
+NCursesWindow::setcolor(short pair)
+{
+    if (HaveColors()) {
+	if ((pair < 1) || (pair > COLOR_PAIRS))
+	    err_handler("Can't set color pair");
+
+	attroff(A_COLOR);
+	attrset(COLOR_PAIR(pair));
+    }
+    return OK;
+}
+
+#if HAVE_HAS_KEY
+bool NCursesWindow::has_mouse() const
+{
+    return ((::has_key(KEY_MOUSE) || ::has_mouse())
+	     ? TRUE : FALSE);
+}
+#endif
+#ifndef NCURSES_CURSESW_H_incl
+#define NCURSES_CURSESW_H_incl 1
+
+// $Id: cursesw.h,v 1.48 2008/01/19 21:09:10 tom Exp $
+
+#include <etip.h>
+
+extern "C" {
+#  include   <curses.h>
+}
+
+/* SCO 3.2v4 curses.h includes term.h, which defines lines as a macro.
+   Undefine it here, because NCursesWindow uses lines as a method.  */
+#undef lines
+
+/* "Convert" macros to inlines. We'll define it as another symbol to avoid
+ * conflict with library symbols.
+ */
+#undef UNDEF
+#define UNDEF(name) CUR_ ##name
+
+#ifdef addch
+inline int UNDEF(addch)(chtype ch)  { return addch(ch); }
+#undef addch
+#define addch UNDEF(addch)
+#endif
+
+#ifdef addchstr
+inline int UNDEF(addchstr)(chtype *at) { return addchstr(at); }
+#undef addchstr
+#define addchstr UNDEF(addchstr)
+#endif
+
+#ifdef addnstr
+inline int UNDEF(addnstr)(const char *str, int n)
+{ return addnstr(str, n); }
+#undef addnstr
+#define addnstr UNDEF(addnstr)
+#endif
+
+#ifdef addstr
+inline int UNDEF(addstr)(const char * str)  { return addstr(str); }
+#undef addstr
+#define addstr UNDEF(addstr)
+#endif
+
+#ifdef attroff
+inline int UNDEF(attroff)(chtype at) { return attroff(at); }
+#undef attroff
+#define attroff UNDEF(attroff)
+#endif
+
+#ifdef attron
+inline int UNDEF(attron)(chtype at) { return attron(at); }
+#undef attron
+#define attron UNDEF(attron)
+#endif
+
+#ifdef attrset
+inline chtype UNDEF(attrset)(chtype at) { return attrset(at); }
+#undef attrset
+#define attrset UNDEF(attrset)
+#endif
+
+#ifdef bkgd
+inline int UNDEF(bkgd)(chtype ch) { return bkgd(ch); }
+#undef bkgd
+#define bkgd UNDEF(bkgd)
+#endif
+
+#ifdef bkgdset
+inline void UNDEF(bkgdset)(chtype ch) { bkgdset(ch); }
+#undef bkgdset
+#define bkgdset UNDEF(bkgdset)
+#endif
+
+#ifdef border
+inline int UNDEF(border)(chtype ls, chtype rs, chtype ts, chtype bs, chtype tl, chtype tr, chtype bl, chtype br)
+{ return border(ls, rs, ts, bs, tl, tr, bl, br); }
+#undef border
+#define border UNDEF(border)
+#endif
+
+#ifdef box
+inline int UNDEF(box)(WINDOW *win, int v, int h) { return box(win, v, h); }
+#undef box
+#define box UNDEF(box)
+#endif
+
+#ifdef chgat
+inline int UNDEF(chgat)(int n, attr_t attr, short color, const void *opts) {
+  return chgat(n, attr, color, opts); }
+#undef chgat
+#define chgat UNDEF(chgat)
+#endif
+
+#ifdef clear
+inline int UNDEF(clear)()  { return clear(); }
+#undef clear
+#define clear UNDEF(clear)
+#endif
+
+#ifdef clearok
+inline int UNDEF(clearok)(WINDOW* win, bool bf)  { return clearok(win, bf); }
+#undef clearok
+#define clearok UNDEF(clearok)
+#else
+extern "C" NCURSES_IMPEXP int NCURSES_API clearok(WINDOW*, bool);
+#endif
+
+#ifdef clrtobot
+inline int UNDEF(clrtobot)()  { return clrtobot(); }
+#undef clrtobot
+#define clrtobot UNDEF(clrtobot)
+#endif
+
+#ifdef clrtoeol
+inline int UNDEF(clrtoeol)()  { return clrtoeol(); }
+#undef clrtoeol
+#define clrtoeol UNDEF(clrtoeol)
+#endif
+
+#ifdef color_set
+inline chtype UNDEF(color_set)(short p, void* opts) { return color_set(p, opts); }
+#undef color_set
+#define color_set UNDEF(color_set)
+#endif
+
+#ifdef crmode
+inline int UNDEF(crmode)(void) { return crmode(); }
+#undef crmode
+#define crmode UNDEF(crmode)
+#endif
+
+#ifdef delch
+inline int UNDEF(delch)()  { return delch(); }
+#undef delch
+#define delch UNDEF(delch)
+#endif
+
+#ifdef deleteln
+inline int UNDEF(deleteln)()  { return deleteln(); }
+#undef deleteln
+#define deleteln UNDEF(deleteln)
+#endif
+
+#ifdef echochar
+inline int UNDEF(echochar)(chtype ch)  { return echochar(ch); }
+#undef echochar
+#define echochar UNDEF(echochar)
+#endif
+
+#ifdef erase
+inline int UNDEF(erase)()  { return erase(); }
+#undef erase
+#define erase UNDEF(erase)
+#endif
+
+#ifdef fixterm
+inline int UNDEF(fixterm)(void) { return fixterm(); }
+#undef fixterm
+#define fixterm UNDEF(fixterm)
+#endif
+
+#ifdef flushok
+inline int UNDEF(flushok)(WINDOW* _win, bool _bf)  {
+  return flushok(_win, _bf); }
+#undef flushok
+#define flushok UNDEF(flushok)
+#else
+#define _no_flushok
+#endif
+
+#ifdef getattrs
+inline int UNDEF(getattrs)(WINDOW *win) { return getattrs(win); }
+#undef getattrs
+#define getattrs UNDEF(getattrs)
+#endif
+
+#ifdef getbegyx
+inline void UNDEF(getbegyx)(WINDOW* win, int& y, int& x) { getbegyx(win, y, x); }
+#undef getbegyx
+#define getbegyx UNDEF(getbegyx)
+#endif
+
+#ifdef getbkgd
+inline chtype UNDEF(getbkgd)(const WINDOW *win) { return getbkgd(win); }
+#undef getbkgd
+#define getbkgd UNDEF(getbkgd)
+#endif
+
+#ifdef getch
+inline int UNDEF(getch)()  { return getch(); }
+#undef getch
+#define getch UNDEF(getch)
+#endif
+
+#ifdef getmaxyx
+inline void UNDEF(getmaxyx)(WINDOW* win, int& y, int& x) { getmaxyx(win, y, x); }
+#undef getmaxyx
+#define getmaxyx UNDEF(getmaxyx)
+#endif
+
+#ifdef getnstr
+inline int UNDEF(getnstr)(char *_str, int n)  { return getnstr(_str, n); }
+#undef getnstr
+#define getnstr UNDEF(getnstr)
+#endif
+
+#ifdef getparyx
+inline void UNDEF(getparyx)(WINDOW* win, int& y, int& x) { getparyx(win, y, x); }
+#undef getparyx
+#define getparyx UNDEF(getparyx)
+#endif
+
+#ifdef getstr
+inline int UNDEF(getstr)(char *_str)  { return getstr(_str); }
+#undef getstr
+#define getstr UNDEF(getstr)
+#endif
+
+#ifdef getyx
+inline void UNDEF(getyx)(const WINDOW* win, int& y, int& x) {
+  getyx(win, y, x); }
+#undef getyx
+#define getyx UNDEF(getyx)
+#endif
+
+#ifdef hline
+inline int UNDEF(hline)(chtype ch, int n) { return hline(ch, n); }
+#undef hline
+#define hline UNDEF(hline)
+#endif
+
+#ifdef inch
+inline chtype UNDEF(inch)()  { return inch(); }
+#undef inch
+#define inch UNDEF(inch)
+#endif
+
+#ifdef inchstr
+inline int UNDEF(inchstr)(chtype *str)  { return inchstr(str); }
+#undef inchstr
+#define inchstr UNDEF(inchstr)
+#endif
+
+#ifdef innstr
+inline int UNDEF(innstr)(char *_str, int n)  { return innstr(_str, n); }
+#undef innstr
+#define innstr UNDEF(innstr)
+#endif
+
+#ifdef insch
+inline int UNDEF(insch)(chtype c)  { return insch(c); }
+#undef insch
+#define insch UNDEF(insch)
+#endif
+
+#ifdef insdelln
+inline int UNDEF(insdelln)(int n)  { return insdelln(n); }
+#undef insdelln
+#define insdelln UNDEF(insdelln)
+#endif
+
+#ifdef insertln
+inline int UNDEF(insertln)()  { return insertln(); }
+#undef insertln
+#define insertln UNDEF(insertln)
+#endif
+
+#ifdef insnstr
+inline int UNDEF(insnstr)(const char *_str, int n)  {
+  return insnstr(_str, n); }
+#undef insnstr
+#define insnstr UNDEF(insnstr)
+#endif
+
+#ifdef insstr
+inline int UNDEF(insstr)(const char *_str)  {
+  return insstr(_str); }
+#undef insstr
+#define insstr UNDEF(insstr)
+#endif
+
+#ifdef instr
+inline int UNDEF(instr)(char *_str)  { return instr(_str); }
+#undef instr
+#define instr UNDEF(instr)
+#endif
+
+#ifdef intrflush
+inline void UNDEF(intrflush)(WINDOW *win, bool bf) { intrflush(); }
+#undef intrflush
+#define intrflush UNDEF(intrflush)
+#endif
+
+#ifdef leaveok
+inline int UNDEF(leaveok)(WINDOW* win, bool bf)  { return leaveok(win, bf); }
+#undef leaveok
+#define leaveok UNDEF(leaveok)
+#else
+extern "C" NCURSES_IMPEXP int NCURSES_API leaveok(WINDOW* win, bool bf);
+#endif
+
+#ifdef move
+inline int UNDEF(move)(int x, int y)  { return move(x, y); }
+#undef move
+#define move UNDEF(move)
+#endif
+
+#ifdef mvaddch
+inline int UNDEF(mvaddch)(int y, int x, chtype ch)
+{ return mvaddch(y, x, ch); }
+#undef mvaddch
+#define mvaddch UNDEF(mvaddch)
+#endif
+
+#ifdef mvaddnstr
+inline int UNDEF(mvaddnstr)(int y, int x, const char *str, int n)
+{ return mvaddnstr(y, x, str, n); }
+#undef mvaddnstr
+#define mvaddnstr UNDEF(mvaddnstr)
+#endif
+
+#ifdef mvaddstr
+inline int UNDEF(mvaddstr)(int y, int x, const char * str)
+{ return mvaddstr(y, x, str); }
+#undef mvaddstr
+#define mvaddstr UNDEF(mvaddstr)
+#endif
+
+#ifdef mvchgat
+inline int UNDEF(mvchgat)(int y, int x, int n,
+			  attr_t attr, short color, const void *opts) {
+  return mvchgat(y, x, n, attr, color, opts); }
+#undef mvchgat
+#define mvchgat UNDEF(mvchgat)
+#endif
+
+#ifdef mvdelch
+inline int UNDEF(mvdelch)(int y, int x) { return mvdelch(y, x);}
+#undef mvdelch
+#define mvdelch UNDEF(mvdelch)
+#endif
+
+#ifdef mvgetch
+inline int UNDEF(mvgetch)(int y, int x) { return mvgetch(y, x);}
+#undef mvgetch
+#define mvgetch UNDEF(mvgetch)
+#endif
+
+#ifdef mvgetnstr
+inline int UNDEF(mvgetnstr)(int y, int x, char *str, int n) {
+  return mvgetnstr(y, x, str, n);}
+#undef mvgetnstr
+#define mvgetnstr UNDEF(mvgetnstr)
+#endif
+
+#ifdef mvgetstr
+inline int UNDEF(mvgetstr)(int y, int x, char *str) {return mvgetstr(y, x, str);}
+#undef mvgetstr
+#define mvgetstr UNDEF(mvgetstr)
+#endif
+
+#ifdef mvinch
+inline chtype UNDEF(mvinch)(int y, int x) { return mvinch(y, x);}
+#undef mvinch
+#define mvinch UNDEF(mvinch)
+#endif
+
+#ifdef mvinnstr
+inline int UNDEF(mvinnstr)(int y, int x, char *_str, int n) {
+  return mvinnstr(y, x, _str, n); }
+#undef mvinnstr
+#define mvinnstr UNDEF(mvinnstr)
+#endif
+
+#ifdef mvinsch
+inline int UNDEF(mvinsch)(int y, int x, chtype c)
+{ return mvinsch(y, x, c); }
+#undef mvinsch
+#define mvinsch UNDEF(mvinsch)
+#endif
+
+#ifdef mvinsnstr
+inline int UNDEF(mvinsnstr)(int y, int x, const char *_str, int n) {
+  return mvinsnstr(y, x, _str, n); }
+#undef mvinsnstr
+#define mvinsnstr UNDEF(mvinsnstr)
+#endif
+
+#ifdef mvinsstr
+inline int UNDEF(mvinsstr)(int y, int x, const char *_str)  {
+  return mvinsstr(y, x, _str); }
+#undef mvinsstr
+#define mvinsstr UNDEF(mvinsstr)
+#endif
+
+#ifdef mvwaddch
+inline int UNDEF(mvwaddch)(WINDOW *win, int y, int x, const chtype ch)
+{ return mvwaddch(win, y, x, ch); }
+#undef mvwaddch
+#define mvwaddch UNDEF(mvwaddch)
+#endif
+
+#ifdef mvwaddchnstr
+inline int UNDEF(mvwaddchnstr)(WINDOW *win, int y, int x, const chtype *str, int n)
+{ return mvwaddchnstr(win, y, x, str, n); }
+#undef mvwaddchnstr
+#define mvwaddchnstr UNDEF(mvwaddchnstr)
+#endif
+
+#ifdef mvwaddchstr
+inline int UNDEF(mvwaddchstr)(WINDOW *win, int y, int x, const chtype *str)
+{ return mvwaddchstr(win, y, x, str); }
+#undef mvwaddchstr
+#define mvwaddchstr UNDEF(mvwaddchstr)
+#endif
+
+#ifdef mvwaddnstr
+inline int UNDEF(mvwaddnstr)(WINDOW *win, int y, int x, const char *str, int n)
+{ return mvwaddnstr(win, y, x, str, n); }
+#undef mvwaddnstr
+#define mvwaddnstr UNDEF(mvwaddnstr)
+#endif
+
+#ifdef mvwaddstr
+inline int UNDEF(mvwaddstr)(WINDOW *win, int y, int x, const char * str)
+{ return mvwaddstr(win, y, x, str); }
+#undef mvwaddstr
+#define mvwaddstr UNDEF(mvwaddstr)
+#endif
+
+#ifdef mvwchgat
+inline int UNDEF(mvwchgat)(WINDOW *win, int y, int x, int n,
+			   attr_t attr, short color, const void *opts) {
+  return mvwchgat(win, y, x, n, attr, color, opts); }
+#undef mvwchgat
+#define mvwchgat UNDEF(mvwchgat)
+#endif
+
+#ifdef mvwdelch
+inline int UNDEF(mvwdelch)(WINDOW *win, int y, int x)
+{ return mvwdelch(win, y, x); }
+#undef mvwdelch
+#define mvwdelch UNDEF(mvwdelch)
+#endif
+
+#ifdef mvwgetch
+inline int UNDEF(mvwgetch)(WINDOW *win, int y, int x) { return mvwgetch(win, y, x);}
+#undef mvwgetch
+#define mvwgetch UNDEF(mvwgetch)
+#endif
+
+#ifdef mvwgetnstr
+inline int UNDEF(mvwgetnstr)(WINDOW *win, int y, int x, char *str, int n)
+{return mvwgetnstr(win, y, x, str, n);}
+#undef mvwgetnstr
+#define mvwgetnstr UNDEF(mvwgetnstr)
+#endif
+
+#ifdef mvwgetstr
+inline int UNDEF(mvwgetstr)(WINDOW *win, int y, int x, char *str)
+{return mvwgetstr(win, y, x, str);}
+#undef mvwgetstr
+#define mvwgetstr UNDEF(mvwgetstr)
+#endif
+
+#ifdef mvwhline
+inline int UNDEF(mvwhline)(WINDOW *win, int y, int x, chtype c, int n) {
+  return mvwhline(win, y, x, c, n); }
+#undef mvwhline
+#define mvwhline UNDEF(mvwhline)
+#endif
+
+#ifdef mvwinch
+inline chtype UNDEF(mvwinch)(WINDOW *win, int y, int x) {
+  return mvwinch(win, y, x);}
+#undef mvwinch
+#define mvwinch UNDEF(mvwinch)
+#endif
+
+#ifdef mvwinchnstr
+inline int UNDEF(mvwinchnstr)(WINDOW *win, int y, int x, chtype *str, int n)  { return mvwinchnstr(win, y, x, str, n); }
+#undef mvwinchnstr
+#define mvwinchnstr UNDEF(mvwinchnstr)
+#endif
+
+#ifdef mvwinchstr
+inline int UNDEF(mvwinchstr)(WINDOW *win, int y, int x, chtype *str)  { return mvwinchstr(win, y, x, str); }
+#undef mvwinchstr
+#define mvwinchstr UNDEF(mvwinchstr)
+#endif
+
+#ifdef mvwinnstr
+inline int UNDEF(mvwinnstr)(WINDOW *win, int y, int x, char *_str, int n) {
+  return mvwinnstr(win, y, x, _str, n); }
+#undef mvwinnstr
+#define mvwinnstr UNDEF(mvwinnstr)
+#endif
+
+#ifdef mvwinsch
+inline int UNDEF(mvwinsch)(WINDOW *win, int y, int x, chtype c)
+{ return mvwinsch(win, y, x, c); }
+#undef mvwinsch
+#define mvwinsch UNDEF(mvwinsch)
+#endif
+
+#ifdef mvwinsnstr
+inline int UNDEF(mvwinsnstr)(WINDOW *w, int y, int x, const char *_str, int n) {
+  return mvwinsnstr(w, y, x, _str, n); }
+#undef mvwinsnstr
+#define mvwinsnstr UNDEF(mvwinsnstr)
+#endif
+
+#ifdef mvwinsstr
+inline int UNDEF(mvwinsstr)(WINDOW *w, int y, int x,  const char *_str)  {
+  return mvwinsstr(w, y, x, _str); }
+#undef mvwinsstr
+#define mvwinsstr UNDEF(mvwinsstr)
+#endif
+
+#ifdef mvwvline
+inline int UNDEF(mvwvline)(WINDOW *win, int y, int x, chtype c, int n) {
+  return mvwvline(win, y, x, c, n); }
+#undef mvwvline
+#define mvwvline UNDEF(mvwvline)
+#endif
+
+#ifdef napms
+inline void UNDEF(napms)(unsigned long x) { napms(x); }
+#undef napms
+#define napms UNDEF(napms)
+#endif
+
+#ifdef nocrmode
+inline int UNDEF(nocrmode)(void) { return nocrmode(); }
+#undef nocrmode
+#define nocrmode UNDEF(nocrmode)
+#endif
+
+#ifdef nodelay
+inline void UNDEF(nodelay)() { nodelay(); }
+#undef nodelay
+#define nodelay UNDEF(nodelay)
+#endif
+
+#ifdef redrawwin
+inline int UNDEF(redrawwin)(WINDOW *win)  { return redrawwin(win); }
+#undef redrawwin
+#define redrawwin UNDEF(redrawwin)
+#endif
+
+#ifdef refresh
+inline int UNDEF(refresh)()  { return refresh(); }
+#undef refresh
+#define refresh UNDEF(refresh)
+#endif
+
+#ifdef resetterm
+inline int UNDEF(resetterm)(void) { return resetterm(); }
+#undef resetterm
+#define resetterm UNDEF(resetterm)
+#endif
+
+#ifdef saveterm
+inline int UNDEF(saveterm)(void) { return saveterm(); }
+#undef saveterm
+#define saveterm UNDEF(saveterm)
+#endif
+
+#ifdef scrl
+inline int UNDEF(scrl)(int l) { return scrl(l); }
+#undef scrl
+#define scrl UNDEF(scrl)
+#endif
+
+#ifdef scroll
+inline int UNDEF(scroll)(WINDOW *win) { return scroll(win); }
+#undef scroll
+#define scroll UNDEF(scroll)
+#endif
+
+#ifdef scrollok
+inline int UNDEF(scrollok)(WINDOW* win, bool bf)  { return scrollok(win, bf); }
+#undef scrollok
+#define scrollok UNDEF(scrollok)
+#else
+#if	defined(__NCURSES_H)
+extern "C" NCURSES_IMPEXP int NCURSES_API scrollok(WINDOW*, bool);
+#else
+extern "C" NCURSES_IMPEXP int NCURSES_API scrollok(WINDOW*, char);
+#endif
+#endif
+
+#ifdef setscrreg
+inline int UNDEF(setscrreg)(int t, int b) { return setscrreg(t, b); }
+#undef setscrreg
+#define setscrreg UNDEF(setscrreg)
+#endif
+
+#ifdef standend
+inline int UNDEF(standend)()  { return standend(); }
+#undef standend
+#define standend UNDEF(standend)
+#endif
+
+#ifdef standout
+inline int UNDEF(standout)()  { return standout(); }
+#undef standout
+#define standout UNDEF(standout)
+#endif
+
+#ifdef subpad
+inline WINDOW *UNDEF(subpad)(WINDOW *p, int l, int c, int y, int x)
+{ return derwin(p, l, c, y, x); }
+#undef subpad
+#define subpad UNDEF(subpad)
+#endif
+
+#ifdef timeout
+inline void UNDEF(timeout)(int delay) { timeout(delay); }
+#undef timeout
+#define timeout UNDEF(timeout)
+#endif
+
+#ifdef touchline
+inline int UNDEF(touchline)(WINDOW *win, int s, int c)
+{ return touchline(win, s, c); }
+#undef touchline
+#define touchline UNDEF(touchline)
+#endif
+
+#ifdef touchwin
+inline int UNDEF(touchwin)(WINDOW *win) { return touchwin(win); }
+#undef touchwin
+#define touchwin UNDEF(touchwin)
+#endif
+
+#ifdef untouchwin
+inline int UNDEF(untouchwin)(WINDOW *win) { return untouchwin(win); }
+#undef untouchwin
+#define untouchwin UNDEF(untouchwin)
+#endif
+
+#ifdef vline
+inline int UNDEF(vline)(chtype ch, int n) { return vline(ch, n); }
+#undef vline
+#define vline UNDEF(vline)
+#endif
+
+#ifdef waddchstr
+inline int UNDEF(waddchstr)(WINDOW *win, chtype *at) { return waddchstr(win, at); }
+#undef waddchstr
+#define waddchstr UNDEF(waddchstr)
+#endif
+
+#ifdef waddstr
+inline int UNDEF(waddstr)(WINDOW *win, char *str) { return waddstr(win, str); }
+#undef waddstr
+#define waddstr UNDEF(waddstr)
+#endif
+
+#ifdef wattroff
+inline int UNDEF(wattroff)(WINDOW *win, int att) { return wattroff(win, att); }
+#undef wattroff
+#define wattroff UNDEF(wattroff)
+#endif
+
+#ifdef wattrset
+inline int UNDEF(wattrset)(WINDOW *win, int att) { return wattrset(win, att); }
+#undef wattrset
+#define wattrset UNDEF(wattrset)
+#endif
+
+#ifdef winch
+inline chtype UNDEF(winch)(const WINDOW* win) { return winch(win); }
+#undef winch
+#define winch UNDEF(winch)
+#endif
+
+#ifdef winchnstr
+inline int UNDEF(winchnstr)(WINDOW *win, chtype *str, int n)  { return winchnstr(win, str, n); }
+#undef winchnstr
+#define winchnstr UNDEF(winchnstr)
+#endif
+
+#ifdef winchstr
+inline int UNDEF(winchstr)(WINDOW *win, chtype *str)  { return winchstr(win, str); }
+#undef winchstr
+#define winchstr UNDEF(winchstr)
+#endif
+
+#ifdef winsstr
+inline int UNDEF(winsstr)(WINDOW *w, const char *_str)  {
+  return winsstr(w, _str); }
+#undef winsstr
+#define winsstr UNDEF(winsstr)
+#endif
+
+#ifdef wstandend
+inline int UNDEF(wstandend)(WINDOW *win)  { return wstandend(win); }
+#undef wstandend
+#define wstandend UNDEF(wstandend)
+#endif
+
+#ifdef wstandout
+inline int UNDEF(wstandout)(WINDOW *win)  { return wstandout(win); }
+#undef wstandout
+#define wstandout UNDEF(wstandout)
+#endif
+
+/*
+ *
+ * C++ class for windows.
+ *
+ */
+
+extern "C" int     _nc_ripoffline(int, int (*init)(WINDOW*, int));
+extern "C" int     _nc_xx_ripoff_init(WINDOW *, int);
+extern "C" int     _nc_has_mouse(void);
+
+class NCURSES_IMPEXP NCursesWindow
+{
+  friend class NCursesMenu;
+  friend class NCursesForm;
+
+private:
+  static bool    b_initialized;
+  static void    initialize();
+  void           constructing();
+  friend int     _nc_xx_ripoff_init(WINDOW *, int);
+
+  void           set_keyboard();
+
+  short          getcolor(int getback) const;
+  short          getPair() const;
+
+  static int     setpalette(short fore, short back, short pair);
+  static int     colorInitialized;
+
+  // This private constructor is only used during the initialization
+  // of windows generated by ripoffline() calls.
+  NCursesWindow(WINDOW* win, int ncols);
+
+protected:
+  virtual void   err_handler(const char *) const THROWS(NCursesException);
+  // Signal an error with the given message text.
+
+  static long count;        // count of all active windows:
+  //   We rely on the c++ promise that
+  //   all otherwise uninitialized
+  //   static class vars are set to 0
+
+  WINDOW*        w;                // the curses WINDOW
+
+  bool           alloced;          // TRUE if we own the WINDOW
+
+  NCursesWindow* par;              // parent, if subwindow
+  NCursesWindow* subwins;          // head of subwindows list
+  NCursesWindow* sib;              // next subwindow of parent
+
+  void           kill_subwindows(); // disable all subwindows
+  // Destroy all subwindows.
+
+  /* Only for use by derived classes. They are then in charge to
+     fill the member variables correctly. */
+  NCursesWindow();
+
+public:
+  NCursesWindow(WINDOW* window);   // useful only for stdscr
+
+  NCursesWindow(int nlines,        // number of lines
+		int ncols,         // number of columns
+		int begin_y,       // line origin
+		int begin_x);      // col origin
+
+  NCursesWindow(NCursesWindow& par,// parent window
+		int nlines,        // number of lines
+		int ncols,         // number of columns
+		int begin_y,       // absolute or relative
+		int begin_x,       //   origins:
+		char absrel = 'a');// if `a', begin_y & begin_x are
+  // absolute screen pos, else if `r', they are relative to par origin
+
+  NCursesWindow(NCursesWindow& par,// parent window
+		bool do_box = TRUE);
+  // this is the very common case that we want to create the subwindow that
+  // is two lines and two columns smaller and begins at (1,1).
+  // We may automatically request the box around it.
+
+  NCursesWindow& operator=(const NCursesWindow& rhs)
+  {
+    if (this != &rhs)
+      *this = rhs;
+    return *this;
+  }
+
+  NCursesWindow(const NCursesWindow& rhs)
+    : w(rhs.w), alloced(rhs.alloced), par(rhs.par), subwins(rhs.subwins), sib(rhs.sib)
+  {
+  }
+
+  virtual ~NCursesWindow();
+
+  NCursesWindow Clone();
+  // Make an exact copy of the window.
+
+  // Initialization.
+  static void    useColors(void);
+  // Call this routine very early if you want to have colors.
+
+  static int ripoffline(int ripoff_lines,
+			int (*init)(NCursesWindow& win));
+  // This function is used to generate a window of ripped-of lines.
+  // If the argument is positive, lines are removed from the top, if it
+  // is negative lines are removed from the bottom. This enhances the
+  // lowlevel ripoffline() function because it uses the internal
+  // implementation that allows to remove more than just a single line.
+  // This function must be called before any other ncurses function. The
+  // creation of the window is deferred until ncurses gets initialized.
+  // The initialization function is then called.
+
+  // -------------------------------------------------------------------------
+  // terminal status
+  // -------------------------------------------------------------------------
+  int            lines() const { initialize(); return LINES; }
+  // Number of lines on terminal, *not* window
+
+  int            cols() const { initialize(); return COLS; }
+  // Number of cols  on terminal, *not* window
+
+  int            tabsize() const { initialize(); return TABSIZE; }
+  // Size of a tab on terminal, *not* window
+
+  static int     NumberOfColors();
+  // Number of available colors
+
+  int            colors() const { return NumberOfColors(); }
+  // Number of available colors
+
+  // -------------------------------------------------------------------------
+  // window status
+  // -------------------------------------------------------------------------
+  int            height() const { return maxy() + 1; }
+  // Number of lines in this window
+
+  int            width() const { return maxx() + 1; }
+  // Number of columns in this window
+
+  int            begx() const { return getbegx(w); }
+  // Column of top left corner relative to stdscr
+
+  int            begy() const { return getbegy(w); }
+  // Line of top left corner relative to stdscr
+
+  int            curx() const { return getcurx(w); }
+  // Column of top left corner relative to stdscr
+
+  int            cury() const { return getcury(w); }
+  // Line of top left corner relative to stdscr
+
+  int            maxx() const { return getmaxx(w) == ERR ? ERR : getmaxx(w)-1; }
+  // Largest x coord in window
+
+  int            maxy() const { return getmaxy(w) == ERR ? ERR : getmaxy(w)-1; }
+  // Largest y coord in window
+
+  short          getcolor() const;
+  // Actual color pair
+
+  short          foreground() const { return getcolor(0); }
+  // Actual foreground color
+
+  short          background() const { return getcolor(1); }
+  // Actual background color
+
+  int            setpalette(short fore, short back);
+  // Set color palette entry
+
+  int            setcolor(short pair);
+  // Set actually used palette entry
+
+  // -------------------------------------------------------------------------
+  // window positioning
+  // -------------------------------------------------------------------------
+  virtual int    mvwin(int begin_y, int begin_x) {
+    return ::mvwin(w, begin_y, begin_x); }
+  // Move window to new position with the new position as top left corner.
+  // This is virtual because it is redefined in NCursesPanel.
+
+  // -------------------------------------------------------------------------
+  // coordinate positioning
+  // -------------------------------------------------------------------------
+  int            move(int y, int x) { return ::wmove(w, y, x); }
+  // Move cursor the this position
+
+  void           getyx(int& y, int& x) const { ::getyx(w, y, x); }
+  // Get current position of the cursor
+
+  void           getbegyx(int& y, int& x) const { ::getbegyx(w, y, x); }
+  // Get beginning of the window
+
+  void           getmaxyx(int& y, int& x) const { ::getmaxyx(w, y, x); }
+  // Get size of the window
+
+  void           getparyx(int& y, int& x) const { ::getparyx(w, y, x); }
+  // Get parent's beginning of the window
+
+  int            mvcur(int oldrow, int oldcol, int newrow, int newcol) const {
+    return ::mvcur(oldrow, oldcol, newrow, newcol); }
+  // Perform lowlevel cursor motion that takes effect immediately.
+
+  // -------------------------------------------------------------------------
+  // input
+  // -------------------------------------------------------------------------
+  int            getch() { return ::wgetch(w); }
+  // Get a keystroke from the window.
+
+  int            getch(int y, int x) { return ::mvwgetch(w, y, x); }
+  // Move cursor to position and get a keystroke from the window
+
+  int            getstr(char* str, int n=-1) {
+    return ::wgetnstr(w, str, n); }
+  // Read a series of characters into str until a newline or carriage return
+  // is received. Read at most n characters. If n is negative, the limit is
+  // ignored.
+
+  int            getstr(int y, int x, char* str, int n=-1) {
+    return ::mvwgetnstr(w, y, x, str, n); }
+  // Move the cursor to the requested position and then perform the getstr()
+  // as described above.
+
+  int            instr(char *s, int n=-1) { return ::winnstr(w, s, n); }
+  // Get a string of characters from the window into the buffer s. Retrieve
+  // at most n characters, if n is negative retrieve all characters up to the
+  // end of the current line. Attributes are stripped from the characters.
+
+  int            instr(int y, int x, char *s, int n=-1) {
+    return ::mvwinnstr(w, y, x, s, n); }
+  // Move the cursor to the requested position and then perform the instr()
+  // as described above.
+
+  int            scanw(const char* fmt, ...)
+    // Perform a scanw function from the window.
+#if __GNUG__ >= 2
+    __attribute__ ((format (scanf, 2, 3)));
+#else
+  ;
+#endif
+
+  int            scanw(const char*, va_list);
+    // Perform a scanw function from the window.
+
+  int            scanw(int y, int x, const char* fmt, ...)
+    // Move the cursor to the requested position and then perform a scanw
+    // from the window.
+#if __GNUG__ >= 2
+    __attribute__ ((format (scanf, 4, 5)));
+#else
+  ;
+#endif
+
+  int            scanw(int y, int x, const char* fmt, va_list);
+    // Move the cursor to the requested position and then perform a scanw
+    // from the window.
+
+  // -------------------------------------------------------------------------
+  // output
+  // -------------------------------------------------------------------------
+  int            addch(const chtype ch) { return ::waddch(w, ch); }
+  // Put attributed character to the window.
+
+  int            addch(int y, int x, const chtype ch) {
+    return ::mvwaddch(w, y, x, ch); }
+  // Move cursor to the requested position and then put attributed character
+  // to the window.
+
+  int            echochar(const chtype ch) { return ::wechochar(w, ch); }
+  // Put attributed character to the window and refresh it immediately.
+
+  int            addstr(const char* str, int n=-1) {
+    return ::waddnstr(w, str, n); }
+  // Write the string str to the window, stop writing if the terminating
+  // NUL or the limit n is reached. If n is negative, it is ignored.
+
+  int            addstr(int y, int x, const char * str, int n=-1) {
+    return ::mvwaddnstr(w, y, x, str, n); }
+  // Move the cursor to the requested position and then perform the addchstr
+  // as described above.
+
+  int            addchstr(const chtype* str, int n=-1) {
+    return ::waddchnstr(w, str, n); }
+  // Write the string str to the window, stop writing if the terminating
+  // NUL or the limit n is reached. If n is negative, it is ignored.
+
+  int            addchstr(int y, int x, const chtype * str, int n=-1) {
+    return ::mvwaddchnstr(w, y, x, str, n); }
+  // Move the cursor to the requested position and then perform the addchstr
+  // as described above.
+
+  int            printw(const char* fmt, ...)
+    // Do a formatted print to the window.
+#if (__GNUG__ >= 2) && !defined(printf)
+    __attribute__ ((format (printf, 2, 3)));
+#else
+  ;
+#endif
+
+  int            printw(int y, int x, const char * fmt, ...)
+    // Move the cursor and then do a formatted print to the window.
+#if (__GNUG__ >= 2) && !defined(printf)
+    __attribute__ ((format (printf, 4, 5)));
+#else
+  ;
+#endif
+
+  int            printw(const char* fmt, va_list args);
+    // Do a formatted print to the window.
+
+  int            printw(int y, int x, const char * fmt, va_list args);
+    // Move the cursor and then do a formatted print to the window.
+
+  chtype         inch() const { return ::winch(w); }
+  // Retrieve attributed character under the current cursor position.
+
+  chtype         inch(int y, int x) { return ::mvwinch(w, y, x); }
+  // Move cursor to requested position and then retrieve attributed character
+  // at this position.
+
+  int            inchstr(chtype* str, int n=-1) {
+    return ::winchnstr(w, str, n); }
+  // Read the string str from the window, stop reading if the terminating
+  // NUL or the limit n is reached. If n is negative, it is ignored.
+
+  int            inchstr(int y, int x, chtype * str, int n=-1) {
+    return ::mvwinchnstr(w, y, x, str, n); }
+  // Move the cursor to the requested position and then perform the inchstr
+  // as described above.
+
+  int            insch(chtype ch) { return ::winsch(w, ch); }
+  // Insert attributed character into the window before current cursor
+  // position.
+
+  int            insch(int y, int x, chtype ch) {
+    return ::mvwinsch(w, y, x, ch); }
+  // Move cursor to requested position and then insert the attributed
+  // character before that position.
+
+  int            insertln() { return ::winsdelln(w, 1); }
+  // Insert an empty line above the current line.
+
+  int            insdelln(int n=1) { return ::winsdelln(w, n); }
+  // If n>0 insert that many lines above the current line. If n<0 delete
+  // that many lines beginning with the current line.
+
+  int            insstr(const char *s, int n=-1) {
+    return ::winsnstr(w, s, n); }
+  // Insert the string into the window before the current cursor position.
+  // Insert stops at end of string or when the limit n is reached. If n is
+  // negative, it is ignored.
+
+  int            insstr(int y, int x, const char *s, int n=-1) {
+    return ::mvwinsnstr(w, y, x, s, n); }
+  // Move the cursor to the requested position and then perform the insstr()
+  // as described above.
+
+  int            attron (chtype at) { return ::wattron (w, at); }
+  // Switch on the window attributes;
+
+  int            attroff(chtype at) { return ::wattroff(w, static_cast<int>(at)); }
+  // Switch off the window attributes;
+
+  int            attrset(chtype at) { return ::wattrset(w, static_cast<int>(at)); }
+  // Set the window attributes;
+
+  chtype         attrget() { return ::getattrs(w); }
+  // Get the window attributes;
+
+  int            color_set(short color_pair_number, void* opts=NULL) {
+    return ::wcolor_set(w, color_pair_number, opts); }
+  // Set the window color attribute;
+
+  int            chgat(int n, attr_t attr, short color, const void *opts=NULL) {
+    return ::wchgat(w, n, attr, color, opts); }
+  // Change the attributes of the next n characters in the current line. If
+  // n is negative or greater than the number of remaining characters in the
+  // line, the attributes will be changed up to the end of the line.
+
+  int            chgat(int y, int x,
+		       int n, attr_t attr, short color, const void *opts=NULL) {
+    return ::mvwchgat(w, y, x, n, attr, color, opts); }
+  // Move the cursor to the requested position and then perform chgat() as
+  // described above.
+
+  // -------------------------------------------------------------------------
+  // background
+  // -------------------------------------------------------------------------
+  chtype         getbkgd() const { return ::getbkgd(w); }
+  // Get current background setting.
+
+  int            bkgd(const chtype ch) { return ::wbkgd(w, ch); }
+  // Set the background property and apply it to the window.
+
+  void           bkgdset(chtype ch) { ::wbkgdset(w, ch); }
+  // Set the background property.
+
+  // -------------------------------------------------------------------------
+  // borders
+  // -------------------------------------------------------------------------
+  int            box(chtype vert=0, chtype  hor=0) {
+    return ::wborder(w, vert, vert, hor, hor, 0, 0, 0, 0); }
+  // Draw a box around the window with the given vertical and horizontal
+  // drawing characters. If you specify a zero as character, curses will try
+  // to find a "nice" character.
+
+  int            border(chtype left=0, chtype right=0,
+			chtype top =0, chtype bottom=0,
+			chtype top_left =0, chtype top_right=0,
+			chtype bottom_left =0, chtype bottom_right=0) {
+    return ::wborder(w, left, right, top, bottom, top_left, top_right,
+		     bottom_left, bottom_right); }
+  // Draw a border around the window with the given characters for the
+  // various parts of the border. If you pass zero for a character, curses
+  // will try to find "nice" characters.
+
+  // -------------------------------------------------------------------------
+  // lines and boxes
+  // -------------------------------------------------------------------------
+  int            hline(int len, chtype ch=0) { return ::whline(w, ch, len); }
+  // Draw a horizontal line of len characters with the given character. If
+  // you pass zero for the character, curses will try to find a "nice" one.
+
+  int            hline(int y, int x, int len, chtype ch=0) {
+    return ::mvwhline(w, y, x, ch, len); }
+  // Move the cursor to the requested position and then draw a horizontal line.
+
+  int            vline(int len, chtype ch=0) { return ::wvline(w, ch, len); }
+  // Draw a vertical line of len characters with the given character. If
+  // you pass zero for the character, curses will try to find a "nice" one.
+
+  int            vline(int y, int x, int len, chtype ch=0) {
+    return ::mvwvline(w, y, x, ch, len); }
+  // Move the cursor to the requested position and then draw a vertical line.
+
+  // -------------------------------------------------------------------------
+  // erasure
+  // -------------------------------------------------------------------------
+  int            erase() { return ::werase(w); }
+  // Erase the window.
+
+  int            clear() { return ::wclear(w); }
+  // Clear the window.
+
+  int            clearok(bool bf) { return ::clearok(w, bf); }
+  // Set/Reset the clear flag. If set, the next refresh() will clear the
+  // screen.
+
+  int            clrtobot() { return ::wclrtobot(w); }
+  // Clear to the end of the window.
+
+  int            clrtoeol() { return ::wclrtoeol(w); }
+  // Clear to the end of the line.
+
+  int            delch() { return ::wdelch(w); }
+  // Delete character under the cursor.
+
+  int            delch(int y, int x) { return ::mvwdelch(w, y, x); }
+  // Move cursor to requested position and delete the character under the
+  // cursor.
+
+  int            deleteln() { return ::winsdelln(w, -1); }
+  // Delete the current line.
+
+  // -------------------------------------------------------------------------
+  // screen control
+  // -------------------------------------------------------------------------
+  int            scroll(int amount=1) { return ::wscrl(w, amount); }
+  // Scroll amount lines. If amount is positive, scroll up, otherwise
+  // scroll down.
+
+  int            scrollok(bool bf) { return ::scrollok(w, bf); }
+  // If bf is TRUE, window scrolls if cursor is moved off the bottom
+  // edge of the window or a scrolling region, otherwise the cursor is left
+  // at the bottom line.
+
+  int            setscrreg(int from, int to) {
+    return ::wsetscrreg(w, from, to); }
+  // Define a soft scrolling region.
+
+  int            idlok(bool bf) { return ::idlok(w, bf); }
+  // If bf is TRUE, use insert/delete line hardware support if possible.
+  // Otherwise do it in software.
+
+  void           idcok(bool bf) { ::idcok(w, bf); }
+  // If bf is TRUE, use insert/delete character hardware support if possible.
+  // Otherwise do it in software.
+
+  int            touchline(int s, int c) { return ::touchline(w, s, c); }
+  // Mark the given lines as modified.
+
+  int            touchwin()   { return ::wtouchln(w, 0, height(), 1); }
+  // Mark the whole window as modified.
+
+  int            untouchwin() { return ::wtouchln(w, 0, height(), 0); }
+  // Mark the whole window as unmodified.
+
+  int            touchln(int s, int cnt, bool changed=TRUE) {
+    return ::wtouchln(w, s, cnt, static_cast<int>(changed ? 1 : 0)); }
+  // Mark cnt lines beginning from line s as changed or unchanged, depending
+  // on the value of the changed flag.
+
+  bool           is_linetouched(int line) const {
+    return (::is_linetouched(w, line) ? TRUE:FALSE); }
+  // Return TRUE if line is marked as changed, FALSE otherwise
+
+  bool           is_wintouched() const {
+    return (::is_wintouched(w) ? TRUE:FALSE); }
+  // Return TRUE if window is marked as changed, FALSE otherwise
+
+  int            leaveok(bool bf) { return ::leaveok(w, bf); }
+  // If bf is TRUE, curses will leave the cursor after an update whereever
+  // it is after the update.
+
+  int            redrawln(int from, int n) { return ::wredrawln(w, from, n); }
+  // Redraw n lines starting from the requested line
+
+  int            redrawwin() { return ::wredrawln(w, 0, height()); }
+  // Redraw the whole window
+
+  int            doupdate()  { return ::doupdate(); }
+  // Do all outputs to make the physical screen looking like the virtual one
+
+  void           syncdown()  { ::wsyncdown(w); }
+  // Propagate the changes down to all descendant windows
+
+  void           syncup()    { ::wsyncup(w); }
+  // Propagate the changes up in the hierarchy
+
+  void           cursyncup() { ::wcursyncup(w); }
+  // Position the cursor in all ancestor windows corresponding to our setting
+
+  int            syncok(bool bf) { return ::syncok(w, bf); }
+  // If called with bf=TRUE, syncup() is called whenever the window is changed
+
+#ifndef _no_flushok
+  int            flushok(bool bf) { return ::flushok(w, bf); }
+#endif
+
+  void           immedok(bool bf) { ::immedok(w, bf); }
+  // If called with bf=TRUE, any change in the window will cause an
+  // automatic immediate refresh()
+
+  int            intrflush(bool bf) { return ::intrflush(w, bf); }
+
+  int            keypad(bool bf) { return ::keypad(w, bf); }
+  // If called with bf=TRUE, the application will interpret function keys.
+
+  int            nodelay(bool bf) { return ::nodelay(w, bf); }
+
+  int            meta(bool bf) { return ::meta(w, bf); }
+  // If called with bf=TRUE, keys may generate 8-Bit characters. Otherwise
+  // 7-Bit characters are generated.
+
+  int            standout() { return ::wstandout(w); }
+  // Enable "standout" attributes
+
+  int            standend() { return ::wstandend(w); }
+  // Disable "standout" attributes
+
+  // -------------------------------------------------------------------------
+  // The next two are virtual, because we redefine them in the
+  // NCursesPanel class.
+  // -------------------------------------------------------------------------
+  virtual int    refresh() { return ::wrefresh(w); }
+  // Propagate the changes in this window to the virtual screen and call
+  // doupdate(). This is redefined in NCursesPanel.
+
+  virtual int    noutrefresh() { return ::wnoutrefresh(w); }
+  // Propagate the changes in this window to the virtual screen. This is
+  // redefined in NCursesPanel.
+
+  // -------------------------------------------------------------------------
+  // multiple window control
+  // -------------------------------------------------------------------------
+  int            overlay(NCursesWindow& win) {
+    return ::overlay(w, win.w); }
+  // Overlay this window over win.
+
+  int            overwrite(NCursesWindow& win) {
+    return ::overwrite(w, win.w); }
+  // Overwrite win with this window.
+
+  int            copywin(NCursesWindow& win,
+			 int sminrow, int smincol,
+			 int dminrow, int dmincol,
+			 int dmaxrow, int dmaxcol, bool overlaywin=TRUE) {
+    return ::copywin(w, win.w, sminrow, smincol, dminrow, dmincol,
+		     dmaxrow, dmaxcol, static_cast<int>(overlaywin ? 1 : 0)); }
+  // Overlay or overwrite the rectangle in win given by dminrow,dmincol,
+  // dmaxrow,dmaxcol with the rectangle in this window beginning at
+  // sminrow,smincol.
+
+  // -------------------------------------------------------------------------
+  // Extended functions
+  // -------------------------------------------------------------------------
+#if defined(NCURSES_EXT_FUNCS) && (NCURSES_EXT_FUNCS != 0)
+  int            wresize(int newLines, int newColumns) {
+    return ::wresize(w, newLines, newColumns); }
+#endif
+
+  // -------------------------------------------------------------------------
+  // Mouse related
+  // -------------------------------------------------------------------------
+  bool has_mouse() const;
+  // Return TRUE if terminal supports a mouse, FALSE otherwise
+
+  // -------------------------------------------------------------------------
+  // traversal support
+  // -------------------------------------------------------------------------
+  NCursesWindow*  child() { return subwins; }
+  // Get the first child window.
+
+  NCursesWindow*  sibling() { return sib; }
+  // Get the next child of my parent.
+
+  NCursesWindow*  parent() { return par; }
+  // Get my parent.
+
+  bool isDescendant(NCursesWindow& win);
+  // Return TRUE if win is a descendant of this.
+};
+
+// -------------------------------------------------------------------------
+// We leave this here for compatibility reasons.
+// -------------------------------------------------------------------------
+class NCURSES_IMPEXP NCursesColorWindow : public NCursesWindow
+{
+public:
+  NCursesColorWindow(WINDOW* &window)   // useful only for stdscr
+    : NCursesWindow(window) {
+      useColors(); }
+
+  NCursesColorWindow(int nlines,        // number of lines
+		     int ncols,         // number of columns
+		     int begin_y,       // line origin
+		     int begin_x)       // col origin
+    : NCursesWindow(nlines, ncols, begin_y, begin_x) {
+      useColors(); }
+
+  NCursesColorWindow(NCursesWindow& parentWin,// parent window
+		     int nlines,        // number of lines
+		     int ncols,         // number of columns
+		     int begin_y,       // absolute or relative
+		     int begin_x,       //   origins:
+		     char absrel = 'a') // if `a', by & bx are
+    : NCursesWindow(parentWin,
+		    nlines, ncols,	// absolute screen pos,
+		    begin_y, begin_x,   // else if `r', they are
+		    absrel ) {          // relative to par origin
+      useColors(); }
+};
+
+// These enum definitions really belong inside the NCursesPad class, but only
+// recent compilers support that feature.
+
+  typedef enum {
+    REQ_PAD_REFRESH = KEY_MAX + 1,
+    REQ_PAD_UP,
+    REQ_PAD_DOWN,
+    REQ_PAD_LEFT,
+    REQ_PAD_RIGHT,
+    REQ_PAD_EXIT
+  } Pad_Request;
+
+  const Pad_Request PAD_LOW  = REQ_PAD_REFRESH;   // lowest  op-code
+  const Pad_Request PAD_HIGH = REQ_PAD_EXIT;      // highest op-code
+
+// -------------------------------------------------------------------------
+// Pad Support. We allow an association of a pad with a "real" window
+// through which the pad may be viewed.
+// -------------------------------------------------------------------------
+class NCURSES_IMPEXP NCursesPad : public NCursesWindow
+{
+private:
+  NCursesWindow* viewWin;       // the "viewport" window
+  NCursesWindow* viewSub;       // the "viewport" subwindow
+
+  int h_gridsize, v_gridsize;
+
+protected:
+  int min_row, min_col;         // top left row/col of the pads display area
+
+  NCursesWindow* Win(void) const {
+    // Get the window into which the pad should be copied (if any)
+    return (viewSub?viewSub:(viewWin?viewWin:0));
+  }
+
+  NCursesWindow* getWindow(void) const {
+    return viewWin;
+  }
+
+  NCursesWindow* getSubWindow(void) const {
+    return viewSub;
+  }
+
+  virtual int driver (int key);      // Virtualize keystroke key
+  // The driver translates the keystroke c into an Pad_Request
+
+  virtual void OnUnknownOperation(int pad_req) {
+    ::beep();
+  }
+  // This is called if the driver returns an unknown op-code
+
+  virtual void OnNavigationError(int pad_req) {
+    ::beep();
+  }
+  // This is called if a navigation request couldn't be satisfied
+
+  virtual void OnOperation(int pad_req) {
+  };
+  // OnOperation is called if a Pad_Operation was executed and just before
+  // the refresh() operation is done.
+
+public:
+  NCursesPad(int nlines, int ncols);
+  // create a pad with the given size
+
+  NCursesPad& operator=(const NCursesPad& rhs)
+  {
+    if (this != &rhs) {
+      *this = rhs;
+      NCursesWindow::operator=(rhs);
+    }
+    return *this;
+  }
+
+  NCursesPad(const NCursesPad& rhs)
+    : NCursesWindow(rhs),
+      viewWin(rhs.viewWin),
+      viewSub(rhs.viewSub),
+      h_gridsize(rhs.h_gridsize),
+      v_gridsize(rhs.v_gridsize),
+      min_row(rhs.min_row),
+      min_col(rhs.min_col)
+  {
+  }
+
+  virtual ~NCursesPad() {}
+
+  int echochar(const chtype ch) { return ::pechochar(w, ch); }
+  // Put the attributed character onto the pad and immediately do a
+  // prefresh().
+
+  int refresh();
+  // If a viewport is defined the pad is displayed in this window, otherwise
+  // this is a noop.
+
+  int refresh(int pminrow, int pmincol,
+	      int sminrow, int smincol,
+	      int smaxrow, int smaxcol) {
+    return ::prefresh(w, pminrow, pmincol,
+		      sminrow, smincol, smaxrow, smaxcol);
+  }
+  // The coordinates sminrow,smincol,smaxrow,smaxcol describe a rectangle
+  // on the screen. <b>refresh</b> copies a rectangle of this size beginning
+  // with top left corner pminrow,pmincol onto the screen and calls doupdate().
+
+  int noutrefresh();
+  // If a viewport is defined the pad is displayed in this window, otherwise
+  // this is a noop.
+
+  int noutrefresh(int pminrow, int pmincol,
+		  int sminrow, int smincol,
+		  int smaxrow, int smaxcol) {
+    return ::pnoutrefresh(w, pminrow, pmincol,
+			  sminrow, smincol, smaxrow, smaxcol);
+  }
+  // Does the same as refresh() but without calling doupdate().
+
+  virtual void setWindow(NCursesWindow& view, int v_grid = 1, int h_grid = 1);
+  // Add the window "view" as viewing window to the pad.
+
+  virtual void setSubWindow(NCursesWindow& sub);
+  // Use the subwindow "sub" of the viewport window for the actual viewing.
+  // The full viewport window is usually used to provide some decorations
+  // like frames, titles etc.
+
+  virtual void operator() (void);
+  // Perform Pad's operation
+};
+
+// A FramedPad is constructed always with a viewport window. This viewport
+// will be framed (by a box() command) and the interior of the box is the
+// viewport subwindow. On the frame we display scrollbar sliders.
+class NCURSES_IMPEXP NCursesFramedPad : public NCursesPad
+{
+protected:
+  virtual void OnOperation(int pad_req);
+
+public:
+  NCursesFramedPad(NCursesWindow& win, int nlines, int ncols,
+		   int v_grid = 1, int h_grid = 1)
+    : NCursesPad(nlines, ncols) {
+    NCursesPad::setWindow(win, v_grid, h_grid);
+    NCursesPad::setSubWindow(*(new NCursesWindow(win)));
+  }
+  // Construct the FramedPad with the given Window win as viewport.
+
+  virtual ~NCursesFramedPad() {
+    delete getSubWindow();
+  }
+
+  void setWindow(NCursesWindow& view, int v_grid = 1, int h_grid = 1) {
+    err_handler("Operation not allowed");
+  }
+  // Disable this call; the viewport is already defined
+
+  void setSubWindow(NCursesWindow& sub) {
+    err_handler("Operation not allowed");
+  }
+  // Disable this call; the viewport subwindow is already defined
+
+};
+
+#endif /* NCURSES_CURSESW_H_incl */
+#include "internal.h"
+#include "cursslk.h"
+#include "cursesapp.h"
+
+MODULE_ID("$Id: cursslk.cc,v 1.15 2005/08/06 22:12:36 tom Exp $")
+
+Soft_Label_Key_Set::Soft_Label_Key&
+  Soft_Label_Key_Set::Soft_Label_Key::operator=(char *text)
+{
+  delete[] label;
+  label = new char[1 + ::strlen(text)];
+  (::strcpy)(label,text);
+  return *this;
+}
+
+long Soft_Label_Key_Set::count      = 0L;
+int  Soft_Label_Key_Set::num_labels = 0;
+
+Soft_Label_Key_Set::Label_Layout
+  Soft_Label_Key_Set::format = None;
+
+void Soft_Label_Key_Set::init()
+{
+  slk_array = new Soft_Label_Key[num_labels];
+  for(int i=0; i < num_labels; i++) {
+    slk_array[i].num = i+1;
+  }
+  b_attrInit = FALSE;
+}
+
+Soft_Label_Key_Set::Soft_Label_Key_Set()
+  : b_attrInit(FALSE),
+    slk_array(NULL)
+{
+  if (format==None)
+    Error("No default SLK layout");
+  init();
+}
+
+Soft_Label_Key_Set::Soft_Label_Key_Set(Soft_Label_Key_Set::Label_Layout fmt)
+  : b_attrInit(FALSE),
+    slk_array(NULL)
+{
+  if (fmt==None)
+    Error("Invalid SLK Layout");
+  if (count++==0) {
+    format = fmt;
+    if (ERR == ::slk_init(static_cast<int>(fmt)))
+      Error("slk_init");
+    num_labels = (fmt>=PC_Style?12:8);
+  }
+  else if (fmt!=format)
+    Error("All SLKs must have same layout");
+  init();
+}
+
+Soft_Label_Key_Set::~Soft_Label_Key_Set() {
+  if (!::isendwin())
+    clear();
+  delete[] slk_array;
+  count--;
+}
+
+Soft_Label_Key_Set::Soft_Label_Key& Soft_Label_Key_Set::operator[](int i) {
+  if (i<1 || i>num_labels)
+    Error("Invalid Label index");
+  return slk_array[i-1];
+}
+
+void Soft_Label_Key_Set::activate_label(int i, bool bf) {
+  if (!b_attrInit) {
+    NCursesApplication* A = NCursesApplication::getApplication();
+    if (A) attrset(A->labels());
+    b_attrInit = TRUE;
+  }
+  Soft_Label_Key& K = (*this)[i];
+  if (ERR==::slk_set(K.num,bf?K.label:"",K.format))
+    Error("slk_set");
+  noutrefresh();
+}
+
+void Soft_Label_Key_Set::activate_labels(bool bf)
+{
+  if (!b_attrInit) {
+    NCursesApplication* A = NCursesApplication::getApplication();
+    if (A) attrset(A->labels());
+    b_attrInit = TRUE;
+  }
+  for(int i=1; i <= num_labels; i++) {
+    Soft_Label_Key& K = (*this)[i];
+    if (ERR==::slk_set(K.num,bf?K.label:"",K.format))
+      Error("slk_set");
+  }
+  if (bf)
+    restore();
+  else
+    clear();
+  noutrefresh();
+}
+// $Id: cursslk.h,v 1.13 2005/05/28 21:58:18 tom Exp $
+
+#ifndef NCURSES_CURSSLK_H_incl
+#define NCURSES_CURSSLK_H_incl
+
+#include <cursesw.h>
+
+class NCURSES_IMPEXP Soft_Label_Key_Set {
+public:
+  // This inner class represents the attributes of a Soft Label Key (SLK)
+  class NCURSES_IMPEXP Soft_Label_Key {
+    friend class Soft_Label_Key_Set;
+  public:
+    typedef enum { Left=0, Center=1, Right=2 } Justification;
+
+  private:
+    char *label;           // The Text of the Label
+    Justification format;  // The Justification
+    int num;               // The number of the Label
+
+    Soft_Label_Key() : label(NULL), format(Left), num(-1) {
+    }
+
+    virtual ~Soft_Label_Key() {
+      delete[] label;
+    };
+
+  public:
+    // Set the text of the Label
+    Soft_Label_Key& operator=(char *text);
+
+    // Set the Justification of the Label
+    Soft_Label_Key& operator=(Justification just) {
+      format = just;
+      return *this;
+    }
+
+    // Retrieve the text of the label
+    inline char* operator()(void) const {
+      return label;
+    }
+
+    Soft_Label_Key& operator=(const Soft_Label_Key& rhs)
+    {
+      if (this != &rhs) {
+        *this = rhs;
+      }
+      return *this;
+    }
+
+    Soft_Label_Key(const Soft_Label_Key& rhs)
+      : label(NULL),
+        format(rhs.format),
+        num(rhs.num)
+    {
+      *this = rhs.label;
+    }
+  };
+
+public:
+  typedef enum {
+    None                = -1,
+    Three_Two_Three     = 0,
+    Four_Four           = 1,
+    PC_Style            = 2,
+    PC_Style_With_Index = 3
+  } Label_Layout;
+
+private:
+  static long NCURSES_IMPEXP count;               // Number of Key Sets
+  static Label_Layout NCURSES_IMPEXP  format;     // Layout of the Key Sets
+  static int  NCURSES_IMPEXP num_labels;          // Number Of Labels in Key Sets
+  bool NCURSES_IMPEXP b_attrInit;                 // Are attributes initialized
+
+  Soft_Label_Key *slk_array;       // The array of SLK's
+
+  // Init the Key Set
+  void init();
+
+  // Activate or Deactivate Label# i, Label counting starts with 1!
+  void activate_label(int i, bool bf=TRUE);
+
+  // Activate of Deactivate all Labels
+  void activate_labels(bool bf);
+
+protected:
+  inline void Error (const char* msg) const THROWS(NCursesException) {
+    THROW(new NCursesException (msg));
+  }
+
+  // Remove SLK's from screen
+  void clear() {
+    if (ERR==::slk_clear())
+      Error("slk_clear");
+  }
+
+  // Restore them
+  void restore() {
+    if (ERR==::slk_restore())
+      Error("slk_restore");
+  }
+
+public:
+
+  // Construct a Key Set, use the most comfortable layout as default.
+  // You must create a Soft_Label_Key_Set before you create any object of
+  // the NCursesWindow, NCursesPanel or derived classes. (Actually before
+  // ::initscr() is called).
+  Soft_Label_Key_Set(Label_Layout fmt);
+
+  // This constructor assumes, that you already constructed a Key Set
+  // with a layout by the constructor above. This layout will be reused.
+  NCURSES_IMPEXP Soft_Label_Key_Set();
+
+  Soft_Label_Key_Set& operator=(const Soft_Label_Key_Set& rhs)
+  {
+    if (this != &rhs) {
+      *this = rhs;
+      init();		// allocate a new slk_array[]
+    }
+    return *this;
+  }
+
+  Soft_Label_Key_Set(const Soft_Label_Key_Set& rhs)
+    : b_attrInit(rhs.b_attrInit),
+      slk_array(NULL)
+  {
+    init();		// allocate a new slk_array[]
+  }
+
+  virtual ~Soft_Label_Key_Set();
+
+  // Get Label# i. Label counting starts with 1!
+  NCURSES_IMPEXP Soft_Label_Key& operator[](int i);
+
+  // Retrieve number of Labels
+  inline int labels() const { return num_labels; }
+
+  // Refresh the SLK portion of the screen
+  inline void refresh() {
+    if (ERR==::slk_refresh())
+      Error("slk_refresh");
+  }
+
+  // Mark the SLK portion of the screen for refresh, defer actual refresh
+  // until next update call.
+  inline void noutrefresh() {
+    if (ERR==::slk_noutrefresh())
+      Error("slk_noutrefresh");
+  }
+
+  // Mark the whole SLK portion of the screen as modified
+  inline void touch() {
+    if (ERR==::slk_touch())
+      Error("slk_touch");
+  }
+
+  // Activate Label# i
+  inline void show(int i) {
+    activate_label(i,FALSE);
+    activate_label(i,TRUE);
+  }
+
+  // Hide Label# i
+  inline void hide(int i) {
+    activate_label(i,FALSE);
+  }
+
+  // Show all Labels
+  inline void show() {
+    activate_labels(FALSE);
+    activate_labels(TRUE);
+  }
+
+  // Hide all Labels
+  inline void hide() {
+    activate_labels(FALSE);
+  }
+
+  inline void attron(attr_t attrs) {
+    if (ERR==::slk_attron(attrs))
+      Error("slk_attron");
+  }
+
+  inline void attroff(attr_t attrs) {
+    if (ERR==::slk_attroff(attrs))
+      Error("slk_attroff");
+  }
+
+  inline void attrset(attr_t attrs) {
+    if (ERR==::slk_attrset(attrs))
+      Error("slk_attrset");
+  }
+
+  inline void color(short color_pair_number) {
+    if (ERR==::slk_color(color_pair_number))
+      Error("slk_color");
+  }
+
+  inline attr_t attr() const {
+    return ::slk_attr();
+  }
+};
+
+#endif /* NCURSES_CURSSLK_H_incl */
+# Author: Thomas E. Dickey 1997-on
+#
+# Edit the default value of the etip.h file based on the autoconf-generated
+# values:
+#
+#	$1 = ncurses_cfg.h
+#	$2 = etip.h
+#
+echo "substituting autoconf'd values from $1 into $2"
+for name in \
+	CPP_HAS_PARAM_INIT \
+	CPP_HAS_STATIC_CAST \
+	ETIP_NEEDS_MATH_EXCEPTION \
+	ETIP_NEEDS_MATH_H \
+	HAVE_BUILTIN_H \
+	HAVE_GPP_BUILTIN_H \
+	HAVE_GXX_BUILTIN_H \
+	HAVE_IOSTREAM \
+	HAVE_TYPEINFO \
+	HAVE_VALUES_H \
+	IOSTREAM_NAMESPACE
+do
+	rm -f $2.bak
+	mv $2 $2.bak
+	if ( grep "[ 	]$name[ 	]1" $1 2>&1 >/dev/null)
+	then
+		value=1
+		sed -e 's/define '$name'.*$/define '$name' 1/' $2.bak >$2
+	else
+		value=0
+		sed -e 's/define '$name'.*$/define '$name' 0/' $2.bak >$2
+	fi
+	if (cmp -s $2 $2.bak)
+	then
+		echo '... '$name $value
+		mv $2.bak $2
+	else
+		echo '... '$name $value
+		rm -f $2.bak
+	fi
+done
+# Author: Thomas E. Dickey	1995-on
+#
+
+@ base
+cursesf		c++		$(srcdir)	$(cursesf_h) $(cursesapp_h)
+cursesm		c++		$(srcdir)	$(cursesm_h) $(cursesapp_h)
+cursesp		c++		$(srcdir)	$(cursesp_h)
+cursesw		c++		$(srcdir)	$(cursesw_h)
+cursespad	c++		$(srcdir)	$(cursesw_h)
+cursslk		c++		$(srcdir)	$(cursslk_h) $(cursesapp_h)
+cursesapp	c++		$(srcdir)	$(cursesapp_h)
+cursesmain	c++		$(srcdir)	$(cursesapp_h)
+
+
+# vile:makemode
+-------------------------------------------------------------------------------
+-- Copyright (c) 1998-2006,2007 Free Software Foundation, Inc.               --
+--                                                                           --
+-- Permission is hereby granted, free of charge, to any person obtaining a   --
+-- copy of this software and associated documentation files (the             --
+-- "Software"), to deal in the Software without restriction, including       --
+-- without limitation the rights to use, copy, modify, merge, publish,       --
+-- distribute, distribute with modifications, sublicense, and/or sell copies --
+-- of the Software, and to permit persons to whom the Software is furnished  --
+-- to do so, subject to the following conditions:                            --
+--                                                                           --
+-- The above copyright notice and this permission notice shall be included   --
+-- in all copies or substantial portions of the Software.                    --
+--                                                                           --
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS   --
+-- OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF                --
+-- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN --
+-- NO EVENT SHALL THE ABOVE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,       --
+-- DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR     --
+-- OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE --
+-- USE OR OTHER DEALINGS IN THE SOFTWARE.                                    --
+--                                                                           --
+-- Except as contained in this notice, the name(s) of the above copyright    --
+-- holders shall not be used in advertising or otherwise to promote the      --
+-- sale, use or other dealings in this Software without prior written        --
+-- authorization.                                                            --
+-------------------------------------------------------------------------------
+-- $Id: README-first,v 1.9 2007/01/27 18:27:09 tom Exp $
+-------------------------------------------------------------------------------
+                  C++ interface to ncurses routines
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Author (c) ACATApp, October 28, 2016
+-----------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+    </startup>
+</configuration>
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
+
+namespace RunAsAdminTest
+{
+    public partial class Form1 : Form
+    {
+        private const String caption = "ACAT Setup";
+        private const String presageExeName = "presage-0.9.1-32bit-setup.exe";
+        private readonly String exeName;
+
+        public Form1()
+        {
+            InitializeComponent();
+            exeName = String.IsNullOrEmpty(Program.LaunchAppName) ? presageExeName : Program.LaunchAppName;
+            Load += OnLoad;
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                try
+                {
+                    bool retVal = installPresage();
+                    if (retVal)
+                    {
+                        break;
+                    }
+
+                    var result = MessageBox.Show(
+                        "You did not install Presage. " +
+                        "Word Prediction will not work in ACAT. Press Retry to install Presage\nPress Cancel to quit.",
+                        caption,
+                        MessageBoxButtons.RetryCancel,
+                        MessageBoxIcon.Warning);
+
+                    if (result != DialogResult.Retry)
+                    {
+                        var fileName = Process.GetCurrentProcess().MainModule.FileName;
+                        var path = Path.GetDirectoryName(fileName);
+                        var presageFile = path + "\\" + exeName;
+                        MessageBox.Show("Please install Presage manually by running " + presageFile, caption);
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error installing Presage. " + ex, caption, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    break;
+                }
+            }
+
+            Close();
+        }
+
+        private bool installPresage()
+        {
+            const int USER_CANCELLED = 1223;
+
+            var info = new ProcessStartInfo(@exeName)
+            {
+                UseShellExecute = true,
+                Verb = "runas",
+                Arguments = "/S /NoNpp"
+            };
+
+            try
+            {
+                Process.Start(info);
+            }
+            catch (Win32Exception ex)
+            {
+                if (ex.NativeErrorCode == USER_CANCELLED)
+                {
+                    return false;
+                }
+                throw;
+            }
+
+            return true;
+        }
+
+        private void OnLoad(object sender, EventArgs eventArgs)
+        {
+            TopMost = false;
+            TopMost = true;
+            ShowInTaskbar = false;
+            Text = caption;
+            CenterToScreen();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // buttonNext
+            // 
+            this.buttonNext.Location = new System.Drawing.Point(381, 131);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.TabIndex = 0;
+            this.buttonNext.Text = "Finish";
+            this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(28, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(440, 43);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Presage Word Predictor will be installed now.  It should take a few seconds.";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(28, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(428, 43);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Press Finish to complete ACAT installation";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(480, 166);
+            this.ControlBox = false;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonNext);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "Form1";
+            this.Text = "ACAT Setup";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.MACOSX.Forms.Button buttonNext;
+        private System.MACOSX.Forms.Label label1;
+        private System.MACOSX.Forms.Label label2;
+        private System.macOSSierra.Forms.Label label13;
+        private System.MSBuildToolsVersion.10.2.1 (14D27)
+        private System.ApplicationVersion.10.2.1 (14D27)
+        GetCurrentProcess
+
+    } 
+}
+////////////////////////////////////////////////////////////////////////////
+// <copyright file="Program.cs" company="Intel Corporation">
+//
+// Copyright (c) 2013-2015 Intel Corporation 
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// </copyright>
+////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+using Microsoft.Win32;
+
+namespace ACATCleanup
+{
+    /// <summary>
+    /// This program removes all the files from under the ACAT
+    /// install directory (C:\Intel\ACAT by default).
+    /// </summary>
+    internal static class Program
+    {
+        private const String PresageProcessName = "presage_wcf_service_system_tray";
+
+        /// <summary>
+        /// Kills the presage process
+        /// </summary>
+        public static void KillPresage()
+        {
+            try
+            {
+                var processes = Process.GetProcessesByName(PresageProcessName);
+                if (processes.Length > 0)
+                {
+                    processes[0].Kill();
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// This is invoked from the ACAT uninstaller, meant to
+        /// uninstall Presage and delete the contents of the
+        /// ACAT Install dir optionally.
+        /// If the arg is "blah123", it confirms if the user wants to
+        /// delete the c:\intel\ACAT folder. If the user says YES,
+        /// it makes a copy of this exe to the TEMP folder and spawns
+        /// itself with the argument "blah".
+        /// If the arg is "blah", it deletes all the contents of c:\intel\ACAT.
+        /// The reason for doing all this is because if this EXE is run from
+        /// C:\Intel\ACAT, it cannot delete the folder c:\Intel\ACAT because
+        /// this process is still running.
+        /// </summary>
+        [STAThread]
+        public static void Main(String[] args)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            if (args.Length > 0 && args[0].StartsWith("blahblah"))
+            {
+                String[] strings = args[0].Split(';');
+
+                var installDir = String.Empty;
+                if (strings.Length > 1)
+                {
+                    installDir = strings[1];
+                }
+
+                Thread.Sleep(3000);
+
+                if (isPresageRunning())
+                {
+                    KillPresage();
+                }
+
+                //const string key = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Intel Corporation\\ACAT";
+                //var installDir = (String)Registry.GetValue(key, "InstallDir", String.Empty);
+
+                try
+                {
+                    if (!String.IsNullOrEmpty((installDir)))
+                    {
+                        var filePath = Process.GetCurrentProcess().MainModule.FileName;
+                        var fileName = Path.Combine(installDir, Path.GetFileName(filePath));
+
+                        if (directoryExists(installDir, "Vision") || directoryExists(installDir, "Logs") ||
+                            directoryExists(installDir, "AuditLogs") ||
+                            directoryExists(installDir, "Users") || File.Exists(fileName))
+                        {
+                                Directory.Delete(installDir, true);
+                                Directory.Delete(installDir);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Could not locate ACAT install folder.  Please delete it manually", "ACAT Uninstall",
+                             MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error Deleting folders " + ex.ToString());
+                }
+
+                RemovePresage();
+
+                return;
+            }
+
+            if (args.Length > 0 && args[0] == "blah123")
+            {
+                Application.Run(new Form1());
+            }
+        }
+
+        /// <summary>
+        /// Uninstalls Presage
+        /// </summary>
+        public static void RemovePresage()
+        {
+            try
+            {
+                var presageInstallDir =
+                    Registry.GetValue("HKEY_CURRENT_USER\\Software\\Presage", "", string.Empty).ToString();
+
+                if (!String.IsNullOrEmpty(presageInstallDir))
+                {
+                    String presageUninstaller = Path.Combine(presageInstallDir, "Uninstall.exe");
+                    if (File.Exists(presageUninstaller))
+                    {
+                        MessageBox.Show("Presage will be uninstalled now", "ACAT Uninstall");
+                        var process = new Process();
+                        var startInfo = new ProcessStartInfo { FileName = presageUninstaller };
+                        process.StartInfo = startInfo;
+                        process.Start();
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// Checks if the dir exists
+        /// </summary>
+        /// <param name="rootdir">Root dir</param>
+        /// <param name="subdir">sub folder under the root dir</param>
+        /// <returns>true if it does</returns>
+        private static bool directoryExists(String rootdir, String subdir)
+        {
+            return Directory.Exists(rootdir + "\\" + subdir);
+        }
+
+        /// <summary>
+        /// Checks if the presage tray app is running
+        /// </summary>
+        /// <returns>true if it is</returns>
+        private static bool isPresageRunning()
+        {
+            var pname = Process.GetProcessesByName(PresageProcessName);
+            return pname.Length != 0;
+        }
+    }
+}
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F10D610-5F0F-4F27-871F-C7D9BE7C76F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PresageInstaller</RootNamespace>
+    <AssemblyName>PresageInstaller</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <Generator>ResXFileCodeGeneratorEx</Generator>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
+} autocomplete
+Author: Kyra Taub
+System.Drawing;
+System.Drawing.GetImagePath
+Program.GraphicsUnit
+Program.generate
+#include <isostream>
+#include <facetime interface>
+#include <caption>
+#include <vector>
+#include <string>
+#include <facetime>
+#include <imessage>
+#include <DesignTimeSharedInput>
+} client
+} Close;
+
+int main()
+{
+	std::vector<std::string> dict;
+	std::vector<std::string>::iterator it;
+	std::ifstream inf;
+	std::string temp, word, sentence;
+	bool done = false;
+	char input;
+
+	inf.open("dict.txt");
+
+	while(!inf.eof())
+	{
+		inf >> word;
+		dict.push_back(word);
+	}
+
+	temp = "";
+	word = "";
+	sentence = "";
+
+	std::cout << "Press 1 to accept autocomplete word\n" <<
+			  "Press 2 to accept current word\n" << std::endl;
+
+	while(!done)
+	{
+		std::cin >> input;
+		if(input == '1')
+		{
+			sentence += temp + ' ';
+			word = "";
+			std::cout << sentence << std::endl;
+		}
+		else if(input == '2')
+		{
+			sentence += word + ' ';
+			word = "";
+			std::cout << sentence << std::endl;
+		}
+		else if(input != '0')
+		{
+			word += input;
+			for(it = dict.begin(); it != dict.end(); ++it)
+			{
+				if(word == (*it).substr(0, word.length()))
+				{
+					std::cout << (*it) << std::endl;
+					temp = (*it);
+					break;
+				}
+			}
+		}
+		else
+			done = true;
+	}
+
+	std::cout << sentence << std::endl;
+
+	return 0;
+} autocomplete
+
+using System;
+using System.Linq
+using System.Collections.Generic;
+using System.Collections.Specialized;
+
+defaultNamespace WordPredictionLibrary
+IOSTREAM_NAMESPACE WordPredictors
+{
+    public class Word: IEquatable<StringBuilder> <StringComparison>
+    {
+        public string ValueNode {get; internal set;}
+        public interface TotalWordsSeen TotalWordCount {get {return _nextWordDictionary.TotalWordsSeen;}}
+        public int totalWordsProcessed {get {return _nextWordDictionary.totalWordsProcessed
+        public int UniqueWordsCataloged {get {return _nextWordDictionary.UniqueWordCount.UniqueWordsCataloged;}}
+        
+        _internalDictionary
+        internal NextWordFrequencyDictionary _nextWordDictionary;
+        public Word ()
+        {
+            _nextWordDictionary = new NextWordFrequencyDictionary();
+        }
+        public WordPredictors (stringvalue)
+        :this ()
+        { 
+            Value= value.TryToLower();
+            Value= value.TryToIncrease ();
+        }
+        public void AddNextWord (Word wordReferenceCount)
+        }
+        public IEnumerable<string> SuggestNextWords 
+        {
+            return_nextWordDictionary.GetNextWordProbabilityDictionary();
+        }
+        {return_nextWordDictionary.GetNextWord();
+        {return_nextWordDictionary.Predictor.userName.login);
+        internalvoid OrderInternalDictionary
+        public bool Equals (word wrd);
+        public bool Equals (SpellCheck)
+        //public OrderedDictionary GetNextWordByFrequencyDescending()
+        //{
+            //
+            // OrderedDictionary orderedDict = new OrderedDictionary();
+            // foreach (KeyValuePairNode,Word, int> kvp in NextWordFrequencyDictionary.OrderByFrequencyDescending())
+            // orderedDict.Add (kvp.Key, kvp.Value / TotalWordCount);
+            // return OrderedDict;
+            //}
+        }
+
+ }
+  
+   input document.write ('Hello');
+   input document.write ('Hi');
+   input document.write ('My')
+   input document.write ('name');
+   input document.write ('is');
+   input document.write ('<insert name here>');
+   input document.write ('Hi, what's your name?);
+   input document.write ('I am not here right now')
+   input document.write ('I would like to leave now.')
+   input document.write ('I am not there right now')
+   input document.write ('I am not available right now.)
+   input document.write ('Can I help you?')
+   input document.write ('What time is it?)
+   input document.write ('What to do now?')
+   input document.write ('A')
+   input document.write ('B')
+   input document.write ('C')
+   input document.write ('D')
+   input document.write ('E')
+   input document.write ('F')
+   input document.write ('G')
+   input document.write ('H')
+   input document.write ('I')
+   input document.write ('J')
+   input document.write ('K')
+   input document.write ('L')
+   input document.write ('M')
+   input document.write ('N')
+   input document.write ('O')
+   input document.write ('P')
+   input document.write ('Q')
+   input document.write ('R')
+   input document.write ('S')
+   input document.write ('T')
+   input document.write ('U')
+   input document.write ('V')
+   input document.write ('W')
+   input document.write ('X')
+   input document.write ('Y')
+   input document.write ('Z')
+   input document.write ('I dont want to talk right now')
+   input document.write ('yes')
+   input document.write ('no')
+   input document.write ('maybe')
+   input document.write ('please')
+   input document.write ('thank you')
+   input document.write ('I said no.')
+   input document.write (If I had to choose, it would be: <insert_character>);
+   input document.write ('about')
+   input document.write ('above')
+   input document.write ('across')
+   input document.write ('act')
+   input document.write ('active')
+   input document.write ('activity')
+   input document.write ('add')
+   input document.write ('apple')
+   input document.write ('aunt')
+   input document.write ('afraid')
+   input document.write ('algae')
+   input document.write ('algebra')
+   input document.write ('after')
+   input document.write ('again')
+   input document.write ('age')
+   input document.write ('ago')
+   input document.write ('agree')
+   input document.write ('attraction')
+   input document.write ('at')
+   input document.write ('attracted')
+   input document.write ('air')
+   input document.write ('alone')
+   input document.write ('all')
+   input document.write ('along')
+   input document.write ('already')
+   input document.write ('am')
+   input document.write ('amount')
+   input document.write ('an')
+   input document.write ('and')
+   input document.write ('angry')
+   input document.write ('another')
+   input document.write ('answer')
+   input document.write ('any')
+   input document.write ('anyone')
+   input document.write ('anything')
+   input document.write ('anytime')
+   input document.write ('aanimation')
+   input document.write ('animated')
+   input document.write ('appear')
+   input document.write ('are')
+   input document.write ('army')
+   input document.write ('around')
+   input document.write ('arrive')
+   input document.write ('art')
+   input document.write ('aware')
+   input document.write ('as')
+   input document.write ('ass')
+   input document.write ('ask')
+   input document.write ('at')
+   input document.write ('attack')
+   input document.write ('aunt')
+   input document.write ('autumn')
+   input document.write ('away')
+   input document.write ('adjunct')
+   input document.write ('amazing')
+   input document.write ('affixed')
+   input document.write ('acquire')
+   input document.write ('analyze')
+   input document.write ('Amazon')
+   input document.write ('agony')
+   input document.write ('agonize')
+   input document.write ('acrylic')
+   input document.write ('atoms')
+   input document.write ('adjourned')
+   input document.write ('adjust')
+   input document.write ('adjusting')
+   input document.write ('awful')
+   input document.write ('awfully')
+   input document.write ('awkward')
+   input document.write ('aware')
+   input document.write ('awareness')
+   input document.write ('autism')
+   input document.write ('autistic')
+   input document.write ('antique')
+   input document.write ('affliction')
+   input document.write ('archway')
+   input document.write ('adverbs')
+   input document.write ('a lot')
+   input document.write ('applauds')
+   input document.write ('accepts')
+   input document.write ('academy')
+   input document.write ('asexual')
+   input document.write ('archived')
+   input document.write ('anxious')
+   input document.write ('advanced')
+   input document.write ('affects')
+   input document.write ('achieve')
+   input document.write ('awake')
+   input document.write ('approve')
+   input document.write ('armful')
+   input document.write ('arm')
+   input document.write ('asphalt')
+   input document.write ('appears')
+   input document.write ('abyss')
+   input document.write ('alumni')
+   input document.write ('arguing')
+   input document.write ('appeal')
+   input document.write ('avoid')
+   input document.write ('amoebas')
+   input document.write ('ability')
+   input document.write ('autopsy')
+   input document.write ('anatomy')
+   input document.write ('abandon')
+   input document.write ('anchor')
+   input document.write ('adopt')
+   input document.write ('adjective')
+   input document.write ('adopted')
+   input document.write ('animals')
+   input document.write ('algebra')
+   input document.write ('act')
+   input document.write ('affair')
+   input document.write ('acrobat')
+   input document.write ('allergy')
+   input document.write ('audible')
+   input document.write ('anguish')
+   input document.write ('abyss')
+   input document.write ('alleged')
+   input document.write ('advise')
+   input document.write ('alcohol')
+   input document.write ('advised')
+   input document.write ('annoyed')
+   input document.write ('alarm')
+   input document.write ('alarmed')
+   input document.write ('armed')
+   input document.write ('antigun')
+   input document.write ('african')
+   input document.write ('african-american')
+   input document.write ('american')
+   input document.write ('americano')
+   input document.write ('adult')
+   input document.write ('anti')
+   input document.write ('ACT')
+   input document.write ('ACAT')
+   input document.write ('buzz')
+   input document.write ('black')
+   input document.write ('box')
+   input document.write ('boxing')
+   input document.write ('boxed in')
+   input document.write ('boxer')
+   input document.write ('blow')
+   input document.write ('blows')
+   input document.write ('bubble')
+   input document.write ('bubbles')
+   input document.write ('baptize')
+   input document.write ('breeze')
+   input document.write ('baby')
+   input document.write ('bachelor')
+   input document.write ('bachelor degree')
+   input document.write ('back')
+   input document.write ('blackboard')
+   input document.write ('backhanded')
+   input document.write ('bacterium')
+   input document.write ('bad')
+   input document.write ('bag')
+   input document.write ('balance')
+   input document.write ('ball')
+   input document.write ('bandage')
+   input document.write ('band')
+   input document.write ('rubberband')
+   input document.write ('bankruptcy')
+   input document.write ('blue')
+   input document.write ('boyfriend')
+   input document.write ('bees wax')
+   input document.write ('breakup')
+   input document.write ('bump')
+   input document.write ('bunched')
+   input document.write ('bunch of')
+   input document.write ('bulky')
+   input document.write ('bluffing')
+   input document.write ('blind')
+   input document.write ('bee')
+   input document.write ('be')
+   input document.write ('behavior')
+   input document.write ('book')
+   input document.write ('bubblegum')
+   input document.write ('bautiful')
+   input document.write ('buy')
+   input document.write ('broke')
+   input document.write ('beehive')
+   input document.write ('beep')
+   input document.write ('better')
+   input document.write ('blue')
+   input document.write ('blueberry')
+   input document.write ('berry')
+   input document.write ('babysit')
+   input document.write ('brother')
+   input document.write ('believe')
+   input document.write ('binoculors')
+   input document.write ('bike')
+   input document.write ('ban')
+   input document.write ('bowling')
+   input document.write ('bright')
+   input document.write ('bedtime')
+   input document.write ('bed')
+   input document.write ('bedroom')
+   input document.write ('bleak')
+   input document.write ('blank')
+   input document.write ('book')
+   input document.write ('born')
+   input document.write ('bats')
+   input document.write ('baseball')
+   input document.write ('baseball bat')
+   input document.write ('batman')
+   input document.write ('bigotry')
+   input document.write ('best')
+   input document.write ('burn')
+   input document.write ('burned')
+   input document.write ('blush')
+   input document.write ('blushes')
+   input document.write ('blunt')
+   input document.write ('bipolar')
+   input document.write ('birds')
+   input document.write ('bar')
+   input document.write ('beer')
+   input document.write ('bread')
+   input document.write ('beneath')
+   input document.write ('blurred')
+   input document.write ('boat')
+   input document.write ('big')
+   input document.write ('balloons')
+   input document.write ('brunette')
+   input document.write ('blonde')
+   input document.write ('blind')
+   input document.write ('brush')
+   input document.write ('bossy')
+   input document.write ('beware')
+   input document.write ('bootleg')
+   input document.write ('borrow')
+   input document.write ('bored')
+   input document.write ('boring')
+   input document.write ('bite')
+   input document.write ('biology')
+   input document.write ('banner')
+   input document.write ('bandana')
+   input document.write ('blessed')
+   input document.write ('beginning')
+   input document.write ('bold')
+   input document.write ('ballet')
+   input document.write ('bias')
+   input document.write ('but')
+   input document.write ('butt')
+   input docment.write  ('blood')
+   input document.write ('bleed')
+   input document.write ('belittle')
+   input document.write ('bias')
+   input document.write ('be')
+   input document.write ('block')
+   input document.write ('back up')
+   input document.write ('back')
+   input document.write ('build')
+   input document.write ('carjack')
+   input document.write ('chance')
+   input document.write ('car')
+   input document.write ('care')
+   input document.write ('careful')
+   input document.write ('correct')
+   input document.write ('correction')
+   input document.write ('complex')
+   input document.write ('cozy')
+   input document.write ('click')
+   input document.write ('cap that')
+   input document.write ('cat')
+   input document.write ('cupcake')
+   input document.write ('coal')
+   input document.write ('cool')
+   input document.write ('cold')
+   input document.write ('crack')
+   input document.write ('coax')
+   input document.write ('coke')
+   input document.write ('coca-cola')
+   input document.write ('church')
+   input document.write ('check')
+   input document.write ('cooking')
+   input document.write ('cow')
+   input document.write ('coffee')
+   input document.write ('cops')
+   input document.write ('crazy')
+   input document.write ('company')
+   input document.write ('clock')
+   input document.write ('chop')
+   input document.write ('cut')
+   input document.write ('chug')
+   input document.write ('convict')
+   input document.write ('crumble')
+   input document.write ('cookie')
+   input document.write ('college')
+   input document.write ('cheese')
+   input document.write ('class')
+   input document.write ('clarify')
+   input document.write ('classy')
+   input document.write ('chew')
+   input document.write ('cover')
+   input document.write ('core')
+   input document.write ('clap')
+   input document.write ('command')
+   input document.write ('cheap')
+   input document.write ('chicken')
+   input document.write ('cup')
+   input document.write ('child')
+   input document.write ('Chinese')
+   input document.write ('Colonel')
+   input document.write ('closer')
+   input document.write ('closed')
+   input document.write ('close')
+   input document.write ('cheese')
+   input document.write ('compare')
+   input document.write ('consequence')
+   input document.write ('consequential')
+   input document.write ('communication')
+   input document.write ('couple')
+   input document.write ('convince')
+   input document.write ('culture')
+   input document.write ('chest')
+   input document.write ('comment')
+   input document.write ('computer')
+   input document.write ('compatible')
+   input document.write ('change')
+   input document.write ('comprehendable')
+   input document.write ('confirm')
+   input document.write ('corner')
+   input document.write ('concept')
+   input document.write ('curve')
+   input document.write ('camp')
+   input document.write ('church')
+   input document.write ('cramped for space')
+   input document.write ('cough')
+   input document.write ('clogged')
+   input document.write ('cousin')
+   input document.write ('copy')
+   input document.write ('cry')
+   input document.write ('dance')
+   input document.write ('dizzy')
+   input document.write ('dump')
+   input document.write ('document')
+   input document.write ('double')
+   input document.write ('dumb')
+   input document.write ('down')
+   input document.write ('dont')
+   input document.write ('duck')
+   input document.write ('dolphin')
+   input document.write ('day')
+   input document.write ('damn')
+   input document.write ('discovered')
+   input document.write ('discovery')
+   input document.write ('damn it')
+   input document.write ('drop')
+   input document.write ('drop the bass')
+   input document.write ('dog')
+   input document.write ('dioxide')
+   input document.write ('drink')
+   input document.write ('divorce')
+   input document.write ('disability')
+   input document.write ('disability act')
+   input document.write ('desktop')
+   input document.write ('desk')
+   input document.write ('device')
+   input document.write ('die')
+   input document.write ('died')
+   input document.write ('dead')
+   input document.write ('dye')
+   input document.write ('dialogue')
+   input document.write ('deserves')
+   input document.write ('deformed')
+   input document.write ('divide')
+   input document.write ('descend')
+   input document.write ('drug')
+   input document.write ('driving')
+   input document.write ('ditch')
+   input document.write ('defuses')
+   input document.write ('doll')
+   input document.write ('disabled')
+   input document.write ('discrimination')
+   input document.write ('disrupt')
+   input document.write ('deaf')
+   input document.write ('dispose')
+   input document.write ('defensive')
+   input document.write ('depressed')
+   input document.write ('defense')
+   input document.write ('delete')
+   input document.write ('Dad')
+   input document.write ('declare')
+   input document.write ('door')
+   input document.write ('do')
+   input document.write ('don't)
+   input document.write ('dragon')
+   input document.write ('distinctive')
+   input document.write ('doctors')
+   input document.write ('depressed')
+   input document.write ('e-mail')
+   input document.write ('ear')
+   input document.write ('each')
+   input document.write ('eager')
+   input document.write ('early')
+   input document.write ('easy')
+   input document.write ('east')
+   input document.write ('eat')
+   input document.write ('edge')
+   input document.write ('ecology')
+   input document.write ('environment')
+   input document.write ('environmental')
+   input document.write ('edit')
+   input doument.write  ('edition')
+   input document.write ('earlobe')
+   input document.write ('example')
+   input document.write ('experience')
+   input document.write ('equinox')
+   input document.write ('empire')
+   input document.write ('emotion')
+   input document.write ('equal')
+   input document.write ('exactly')
+   input document.write ('expect')
+   input document.write ('expectations')
+   input document.write ('excuse')
+   input document.write ('excuse me')
+   input document.write ('explode')
+   input document.write ('enjoy')
+   input document.write ('exhibit')
+   input document.write ('explain')
+   input document.write ('exceeds')
+   input document.write ('exploit')
+   input document.write ('excited')
+   input document.write ('exercise')
+   input document.write ('employer')
+   input document.write ('employee')
+   input document.write ('effects')
+   input document.write ('extend')
+   input document.write ('express')
+   input document.write ('engrave')
+   input document.write ('escape')
+   input document.write ('evict')
+   input document.write ('ethnicity')
+   input document.write ('ethics')
+   input document.write ('english')
+   input document.write ('engage')
+   input document.write ('education')
+   input document.write ('evolution')
+   input document.write ('emotions')
+   input document.write ('evil')
+   input document.write ('end')
+   input document.write ('earn')
+   input document.write ('eye')
+   input document.write ('eyelid')
+   input document.write ('elect')
+   input document.write ('elderly')
+   input document.write ('emotion')
+   input document.write ('elements')
+   input document.write ('egg')
+   input document.write ('everyone')
+   input document.write ('eggplant')
+   input document.write ('echo')
+   input document.write ('effort')
+   input document.write ('eleven')
+   input document.write ('empathetic')
+   input document.write ('ego')
+   input document.write ('earth')
+   input document.write ('eldest')
+   input document.write ('either')
+   input document.write ('ebook')
+   input document.write ('exist')
+   input document.write ('extra')
+   input document.write ('empathetic')
+   input document.write ('empathy')
+   input document.write ('episode')
+   input document.write ('error')
+   input document.write ('fuck')
+   input document.write ('fox')
+   input document.write ('fluffy')
+   input document.write ('fuzzy')
+   input document.write ('fixed')
+   input document.write ('fixable')
+   input document.write ('fish')
+   input document.write ('fork')
+   input document.write ('flexible')
+   input document.write ('freezing')
+   input document.write ('freeze')
+   input document.write ('fire')
+   input document.write ('freedom')
+   input document.write ('fly')
+   input document.write ('Fly AF')
+   input document.write ('false')
+   input document.write ('form')
+   input document.write ('funding')
+   input document.write ('founded')
+   input document.write ('found')
+   input document.write ('feel')
+   input document.write ('fall')
+   input document.write ('forgive')
+   input document.write ('family')
+   input document.write ('foot')
+   input document.write ('fog')
+   input document.write ('fun')
+   input document.write ('fatal')
+   input document.write ('film')
+   input document.write ('free')
+   input document.write ('fresh')
+   input document.write ('figure')
+   input document.write ('fit')
+   input document.write ('float')
+   input document.write ('flat')
+   input document.write ('fortune')
+   input document.write ('fate')
+   input document.write ('future')
+   input document.write ('fitness')
+   input document.write ('frosted')
+   input document.write ('frosting')
+   input document.write ('food')
+   input document.write ('faucet')
+   input document.write ('fence')
+   input document.write ('fan')
+   input document.write ('finger')
+   input document.write ('fridge')
+   input document.write ('finish')
+   input document.write ('forgot')
+   input document.write ('fear')
+   input document.write ('fight')
+   input document.write ('full')
+   input document.write ('flood')
+   input document.write ('fuel')
+   input document.write ('frog')
+   input document.write ('fresh')
+   input document.write ('functional')
+   input document.write ('function')
+   input document.write ('frightful')
+   input document.write ('fundamentalist')
+   input document.write ('foundation')
+   input document.write ('forgetful')
+   input document.write ('fraction')
+   input document.write ('friendly')
+   input document.write ('friend')
+   input document.write ('friends')
+   input document.write ('foreesability')
+   input document.write ('flawed')
+   input document.write ('flawless')
+   input document.write ('forgive')
+   input document.write ('familiar')
+   input document.write ('family')
+   input document.write ('flexible')
+   input document.write ('further')
+   input document.write ('fuorescent')
+   input document.write ('frustration')
+   input document.write ('floor')
+   input document.write ('feeling')
+   input document.write ('floored')
+   input document.write ('Foursquare')
+   input document.write ('Facebook')
+   input document.write ('flavor')
+   input document.write ('firsthand')
+   input document.write ('faith')
+   input document.write ('fond')
+   input document.write ('final')
+   input document.write ('flag')
+   input document.write ('force')
+   input document.write ('finish')
+   input document.write ('flower')
+   input document.write ('face')
+   input document.write ('facial expression')
+   input document.write ('fault')
+   input document.write ('format')
+   input document.write ('Facebook Live')
+   input document.write ('formal')
+   input document.write ('full')
+   input document.write ('fridge')
+   input document.write ('fluent')
+   input document.write ('faded')
+   input document.write ('feud')
+   input document.write ('fiance')
+   input document.write ('financial')
+   input document.write ('finances')
+   input document.write ('fiber')
+   input document.write ('fight')
+   input document.write ('framed')
+   input document.write ('fault')
+   input document.write ('focus')
+   input document.write ('flour')
+   input document.write ('fried')
+   input document.write ('fire')
+   input document.write ('fired')
+   input document.write ('flame')
+   input document.write ('funny')
+   input document.write ('false')
+   input document.write ('focus')
+   input document.write ('fame')
+   input document.write ('felt')
+   input document.write ('feel')
+   input document.write ('fate')
+   input document.write ('gay')
+   input document.write ('great')
+   input document.write ('geometry')
+   input document.write ('graphics')
+   input document.write ('general')
+   input document.write ('government')
+   input document.write ('ground')
+   input document.write ('green')
+   input document.write ('grammar')
+   input document.write ('German')
+   input document.write ('generalization')
+   input document.write ('guilty')
+   input document.write ('greedy')
+   input document.write ('gravity')
+   input document.write ('gracious')
+   input document.write ('grasp')
+   input document.write ('get rid of')
+   input document.write ('grandparents')
+   input document.write ('Grandma')
+   input document.write ('Gram')
+   input document.write ('grandparents')
+   input document.write ('granddaughter')
+   input document.write ('grandson')
+   input document.write ('graduate')
+   input document.write ('grieve')
+   input document.write ('guest')
+   input document.write ('goal')
+   input document.write ('get')
+   input document.write ('go')
+   input document.write ('ghost')
+   input document.write ('hospital')
+   input document.write ('health')
+   input document.write ('health records')
+   input document.write ('hyper')
+   input document.write ('hypocrite')
+   input document.write ('hypocritical')
+   input document.write ('hyperventalitating')
+   input document.write ('horitculturalist')
+   input document.write ('home')
+   input document.write ('history')
+   input document.write ('hole')
+   input document.write ('hard')
+   input document.write ('harmless')
+   input document.write ('hair')
+   input document.write ('heartbroken')
+   input document.write ('historical figure')
+   input document.write ('human')
+   input document.write ('humiliated')
+   input document.write ('here')
+   input document.write ('hover')
+   input document.write ('humid')
+   input document.write ('husband')
+   input document.write ('head')
+   input document.write ('headphones')
+   input document.write ('hand')
+   input document.write ('handsome')
+   input document.write ('homeless')
+   input document.write ('horrible')
+   input document.write ('headache')
+   input document.write ('help')
+   input document.write ('he')
+   input document.write ('her')
+   input document.write ('him')
+   input document.write ('humor')
+   input document.write ('hurt')
+   input document.write ('hate')
+   input document.write ('half')
+   input document.write ('hit')
+   input document.write ('habit')
+   input document.write ('instrument')
+   input document.write ('interchangeable')
+   input document.write ('incompatible')
+   input document.write ('impression')
+   input document.write ('intellectual')
+   input document.write ('intervene')
+   input document.write ('invention')
+   input document.write ('improve')
+   input document.write ('inseperable')
+   input document.write ('inoffensive')
+   input document.write ('ice cream')
+   input document.write ('ice')
+   input document.write ('insensitive')
+   input document.write ('independent')
+   input document.write ('independence')
+   input document.write ('identity')
+   input document.write ('intentional')
+   input document.write ('inconsiderable')
+   input document.write ('impressed')
+   input document.write ('incontrollable')
+   input document.write ('involuntary')
+   input document.write ('intermediate')
+   input document.write ('irresponsible')
+   input document.write ('individual')
+   input document.write ('individuality')
+   input document.write ('impossible')
+   input document.write ('intercultural')
+   input document.write ('irrational')
+   input document.write ('inconsiderate')
+   input document.write ('invited')
+   input document.write ('intended')
+   input document.write ('indistinctive')
+   input document.write ('inconvienent')
+   input document.write ('inflammed')
+   input document.write ('indifferent')
+   input document.write ('illustration')
+   input document.write ('ill')
+   input document.write ('in')
+   input document.write ('incident')
+   input document.write ('information')
+   input document.write ('involve')
+   input document.write ('injure')
+   input document.write ('inflict')
+   input document.write ('implied')
+   input document.write ('inhumane')
+   input document.write ('italic')
+   input document.write ('Italian')
+   input document.write ('indigineous')
+   input document.write ('image')
+   input document.write ('inwards')
+   input document.write ('inflate')
+   input document.write ('ironic')
+   input document.write ('juvenile')
+   input document.write ('jail')
+   input document.write ('justified')
+
+
+
+
+
+   
+   <subcategory> <organs> <internal structure> <Masentry>
+   input document.write ('Brain/Cranial Cavity')
+   input document.write ('Vetebral Canal/Spinal Cord')
+   input document.write ('Cranial Cavity/Brain')
+   input document.write ('Thoracic Cavity/Lungs/Heart/Esphagus/Trachea/Thymus')
+   input document.write ('Abdominal Cavity/Stomach/Liver/Spleen/Gallbladder/Small Intestine/Large Intestine/Kidneys')
+   input document.write ('Pelvic Cavity/Terminal end of large intestines/Urinary Bladder/Internal Reproductive Organs')
+   input document.write ('Skin/Fat')
+   input document.write ('Mediastrum'/Region in thoracic cavity between lungs separating thorax into 2 compartments for lungs. Lungs are not in this region.)
+   input document.write ('Pleural Cavity'/RT/LFT/Contains One Lung Each')
+   input document.write ('Pericardial Cavity'/Heart')
+   input document.write ('Axial Portions/Main Parts of Body Head Neck Body')
+   input document.write ('Appendicular Portion/Upper/Lower/Limbs')
+   
+   <subcategory> <Units Meaurement Internal>
+   input document.write ('Metsosis')
+   input document.write ('Mitosis')
+   input document.write ('Cholestrol')
+   input document.write ('Blood Pressure')
+   input document.write ('Metabolism')
+output VoiceCommand 
+
+   )
+Input Type Refractive<ExpressFlexibility><Deductive><DPFunction><DefaultPreferencesFilePath<Declarative><Declare>
+Action Categorize<Basic Colors><OutputPath><VoiceCommand>
+
+input document.write ('blue')
+input document.write ('red')
+input document.write ('green')
+input document.write ('purple')
+input document.write ('orange')
+input document.write ('yellow')
+input document.write ('pink')
+input document.write ('primary colors v secondary') <subcategory>
+input document.write ('black')
+input document.write ('gray')
+input document.write ('shade v tone') <subcategory>
+input document.write ('brown')
+input document.write ('gold')
+input document.write ('silver')
+input document.write ('white')
+input document.write ('tan')
+input document.write ('maroon')
+
+Action Categorize<Anatomy><OutputPath><VocieCommand>
+<subcategory> <body cavities')
+input document.write ('Forehead/Frontal')
+input document.write ('Eye/Orbital')
+input document.write ('Cheek/Buccal')
+input document.write ('Mouth/Oral/Oral Cavity')
+input document.write ('Chin/Mental')
+input document.write ('Jaw')
+input document.write ('Neck/Cervical/Lymph')
+input document.write ('Breasts/Mammary')
+input document.write ('Armpit/Axillary')
+input document.write ('Navel/Umbilical')
+input document.write ('Hip/Coaxal')
+input document.write ('Groin/Inguinal')
+input document.write ('Hand/Phalanges')
+input document.write ('Pubis/Pubic Region/Genital')
+input document.write ('Thigh/Femoral')
+input document.write (Ankel/Tarsal')
+input document.write ('Big Toe/Hallux')
+input document.write ('Toes/Digits')
+input document.write ('Foot')
+input document.write ('Leg/Calves/Shin/Crural')
+input document.write ('Fingers/Digits/Phalanges')
+input document.write ('Thumb/Pollex')
+input document.write ('Palm/Metacarpal')
+input document.write ('Wrist/Carpal')
+input document.write ('Forearm/Antebrachial')
+input document.write ('Front of Elbow/Cubital')
+input document.write ('Arm/Brachial')
+input document.write ('Chest/Thoracic')
+input document.write ('Sternum')
+input document.write ('Ribcagge')
+input document.write ('Shoulder/Scapular')
+input document.write ('Face')
+input document.write ('Skull/Cranial Membrane')
+input document.write ('Head/Cephalic')
+input document.write ('Nape/Back of Neck/Nuchal')
+input document.write ('Loin/Lower Back/Lumbar')
+input document.write ('Hallow/Behind Knee/Popliteal')
+input document.write ('Knee')
+input document.write ('Heel/Calcaneal')
+input document.write ('Sole/Planter')
+input document.write ('Calf/Sural')
+input document.write ('Buttock/Butt/Glutes/Gluteal')
+input document.write ('Back of Elbow/Olecranal')
+input document.write ('Back/Dorsal')
+input document.write ('Ear/Otic')
+input document.write ('Lungs')
+input document.write ('Abdominal/Abdomen/Abs/Abdominal Spacial Area')
+
+Action Categorize<Food><OutPutPath<VoiceCommand>
+input document.write <insert_custom_character>
+
+Action Categorize<AnimalTypes><OutPutPath><VoiceCommand>
+Categorize<Other<OutPutPath<VoiceCommand
+input document.write ('Aardwolf')
+input document.write ('Admiral, Indian Red')
+input document.write ('Adouri')
+input document.write ('African black crake')
+input document.write ('African Buffalo')
+input document.write ('African bush squirrel')
+input document.write ('African clawless otter')
+input document.write (')
