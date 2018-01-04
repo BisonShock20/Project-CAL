@@ -5480,6 +5480,9 @@ IOSTREAM_NAMESPACE WordPredictors
    input document.write ('Z')
    input document.write ('yes')
    input document.write ('no')
+   
+   Input Type Refractive<ExpressFlexibility>Deductive<DPFunction>DefaultPreferencesFilePath<Declarative><Declare>
+Action Categorize<Basic Medical Vocabulary><OutputPath><VoiceCommand>
    <subcategory> <organs> <internal structure> <Masentry>
    input document.write ('Brain/Cranial Cavity')
    input document.write ('Vetebral Canal/Spinal Cord')
@@ -5499,9 +5502,9 @@ IOSTREAM_NAMESPACE WordPredictors
    input document.write ('Cholestrol')
    input document.write ('Blood Pressure')
    input document.write ('Metabolism')
+   input document.write ('
 output VoiceCommand 
-Input Type Refractive<ExpressFlexibility>Deductive<DPFunction>DefaultPreferencesFilePath<Declarative><Declare>
-Action Categorize<Basic Medical Vocabulary><OutputPath><VoiceCommand> 
+ 
 
 
    )
@@ -5576,7 +5579,6 @@ input document.write ('Ear/Otic')
 input document.write ('Lungs')
 input document.write ('Abdominal/Abdomen/Abs/Abdominal Spacial Area')
 
-Action Categorize<Food><OutPutPath<VoiceCommand>
-input document.write <insert_custom_character>
+
 
 
