@@ -6259,7 +6259,7 @@ Action Categorize<Anatomy><OutputPath><VocieCommand>
 input document.write ('Forehead/Frontal')
 input document.write ('Eye/Orbital')
 input document.write ('Cheek/Buccal')
-input document.write ('Mouth/Oral/Oral Cavity')
+input document.write ('Mouth/Oral Cavity')
 input document.write ('Chin/Mental')
 input document.write ('Jaw')
 input document.write ('Neck/Cervical/Lymph')
@@ -6307,13 +6307,4 @@ input document.write ('Abdominal/Abdomen/Abs/Abdominal Spacial Area')
 Action Categorize<Food><OutPutPath<VoiceCommand>
 input document.write <insert_custom_character>
 
-Action Categorize<AnimalTypes><OutPutPath><VoiceCommand>
-Categorize<Other<OutPutPath<VoiceCommand
-input document.write ('Aardwolf')
-input document.write ('Admiral, Indian Red')
-input document.write ('Adouri')
-input document.write ('African black crake')
-input document.write ('African Buffalo')
-input document.write ('African bush squirrel')
-input document.write ('African clawless otter')
-input document.write (')
+
